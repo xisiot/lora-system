@@ -46,7 +46,8 @@
     "moment": "^2.20.1",
     "ajv": "^6.5.2",
     "lodash": "^4.17.4",
-    "protobufjs": "^6.8.0"
+    "protobufjs": "^6.8.0",
+    "mongoose": "^5.2.3"
   },
   "pre-commit": [
     "test",
