@@ -2,4 +2,3 @@
 *.swp
 docs/api
 node_modules
-config.js
