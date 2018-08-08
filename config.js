@@ -9,9 +9,9 @@ module.exports = {
   //Database settings
   database: {
     mysql: {
-      username: 'root',
-      password: 'root@aliyun',
-      database: 'lora_test',
+      username: 'username',
+      password: 'password',
+      database: 'mysql',
       host: 'localhost',
       port: 3306,
       dialect: 'mysql',
@@ -171,10 +171,6 @@ module.exports = {
     }
   },
 
-  udp: {
-    port: 12234
-  },
-
   mqClient_as: {
     nsid: `${nsid}`, // if exist in topic schema
     consumerGroup: {
@@ -205,37 +201,6 @@ module.exports = {
       subFromCloud: `cloud-sub-${nsid}-lora`,
       pubToServer: 'AS-pub',
       subFromServer: 'AS-sub',
-    },
-  },
-
-  mqClient_nct: {
-    nsid: `${nsid}`, // if exist in topic schema
-    consumerGroup: {
-      options: {
-        kafkaHost: kafkaHost,
-        groupId: `lora-network-controller-message-dispatch-in-${nsid}`,
-        sessionTimeout: 15000,
-        protocol: ['roundrobin'],
-        fromOffset: 'latest'
-      },
-      topics: ['CS-sub']
-    },
-    client: {
-      kafkaHost: kafkaHost,
-      clientId: `lora-network-controller-message-dispatch-out-${nsid}`
-    },
-    producer: {
-      requireAcks: 1,
-      ackTimeoutMs: 100,
-      partitionerType: 2
-    },
-    schemaPath: {
-      messages: 'config/messages.json',
-      common: 'config/common.json'
-    },
-    topics: {
-      pubToServer: 'CS-pub',
-      subFromServer: 'CS-sub',
     },
   },
 
