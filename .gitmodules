@@ -1,0 +1,9 @@
+[submodule "lora-network-server"]
+	path = lora-network-server
+	url = git@github.com:xisiot/lora-network-server.git
+[submodule "lora-network-connector"]
+	path = lora-network-connector
+	url = git@github.com:xisiot/lora-network-connector.git
+[submodule "lora-join-server"]
+	path = lora-join-server
+	url = git@github.com:xisiot/lora-join-server.git

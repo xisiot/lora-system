@@ -1,0 +1,55 @@
+{
+  "name": "lora-system",
+  "version": "1.0.0",
+  "description": "LoRa system",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "buildTables": "node models/BuildTables.js",
+    "test": "mocha --recursive",
+    "lint": "files=$(git diff --cached --name-only --diff-filter=ACM | grep '\\.js$'); jshint $files && jscs $files"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:xisiot/lora-system"
+  },
+  "keywords": [
+    "LoRa system"
+  ],
+  "author": "xisiot Co., Ltd.",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "chai-json-schema-ajv": "^1.0.0",
+    "jscs": "^3.0.7",
+    "jshint": "^2.9.5",
+    "mocha": "^4.0.1",
+    "pre-commit": "^1.2.2"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "kafka-node": "^2.3.0",
+    "mysql": "^2.15.0",
+    "mysql2": "^1.5.0",
+    "node-aes-cmac": "^0.1.1",
+    "package.json": "^2.0.1",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "sequelize": "^4.22.6",
+    "sequelize-cli": "^3.0.0",
+    "winston": "^3.0.0",
+    "ioredis": "^3.2.2",
+    "moment": "^2.20.1",
+    "ajv": "^6.5.2",
+    "lodash": "^4.17.4",
+    "protobufjs": "^6.8.0"
+  },
+  "pre-commit": [
+    "test",
+    "lint"
+  ]
+}
