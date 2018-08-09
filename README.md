@@ -4,7 +4,7 @@ This is a whole LoRa system.
 
 ## Architecture 
 
-![](/Users/xjy/Downloads/Architecture.jpg)
+![Architecture](https://github.com/xisiot/resources/blob/master/lora-system/images/Architecture.jpg "Architecture")
 
 ## System Requirements
 
