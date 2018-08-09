@@ -74,7 +74,7 @@
       "pubToJoinServer": "JS-sub",
       "subFromJoinServer": "JS-pub",
       "pubToControllerServer": "CS-sub",
-      "subFromControllerServer": "CS-pu"
+      "subFromControllerServer": "CS-pub"
     }
   },
   "log": {
@@ -109,7 +109,7 @@
       "requireAcks": 1,
       "ackTimeoutMs": 100,
       "partitionerType": 2,
-      "joinServerTopic": "JS-pu"
+      "joinServerTopic": "JS-pub"
     }
   },
   "mqClient_nc": {
@@ -124,7 +124,7 @@
         "fromOffset": "latest"
       },
       "topics": [
-        "NC-su"
+        "NC-sub"
       ]
     },
     "client": {
@@ -137,7 +137,7 @@
       "partitionerType": 2
     },
     "topics": {
-      "pubToServer": "NS-su"
+      "pubToServer": "NS-sub"
     }
   },
   "udp": {
