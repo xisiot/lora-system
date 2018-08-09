@@ -39,7 +39,7 @@ This system requires the following components imperatively.
   cp config_template.json config.json
   ```
 
-- Modify the configurations of kafkaHost, MySQL and other customized fields in ``config.js``.
+- Modify the configurations of kafkaHost, MySQL and other customized fields in ``config.json``.
 
 - Use ``start.sh`` to start LoRa system:
 
