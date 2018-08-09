@@ -1,7 +1,5 @@
 #!/bin/bash
 
-npm install
-
 cp config.json lora-network-server/config/config.json
 cp config.json lora-network-connector/config/config.json
 cp config.json lora-join-server/config/config.json
