@@ -50,4 +50,4 @@ This system requires the following components imperatively.
 
 ## License
 
-LoRa system is distributed under the MIT license. See also [License](https://github.com/xisiot/lora-system/blob/master/LICENSE)
+LoRa system is distributed under the GPL-3.0 license. See also [License](https://github.com/xisiot/lora-system/blob/master/LICENSE)
