@@ -18,7 +18,7 @@ This system requires the following components imperatively.
 
 ## Getting Started
 
-- Install all the components listed in [System Requirements](https://github.com/xisiot/lora-system/new/master?readme=1#system-requirements).
+- Install all the components listed in [System Requirements](https://github.com/xisiot/lora-system/tree/master#system-requirements).
 
 - Create a new database in MySQL.
 
