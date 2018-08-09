@@ -1,0 +1,62 @@
+{
+  "apps": [{
+    "name": "lora-network-server",
+    "script": "./lora-network-server/bin/lora-network-server",
+    "cwd": process.env.PWD,
+    "exec_mode": "fork",
+    "exec_interpreter": "node",
+    "instances": 1,
+    "max_memory_restart": "500M",
+    "autorestart": true,
+    "min_uptime": "30s",
+    "node_args": "--max-old-space-size=65500",
+    "out_file": "~/lora/log/lora-network-server.log",
+    "error_file": "~/lora/log/lora-network-server.log",
+    "combine_logs": true,
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "env_production": {
+      "NODE_ENV": "production"
+    }
+  }, {
+    "name": "lora-network-connector",
+    "script": "./lora-network-connector/index.js",
+    "cwd": process.env.PWD,
+    "exec_mode": "fork",
+    "exec_interpreter": "node",
+    "instances": 1,
+    "autorestart": true,
+    "min_uptime": "30s",
+    "node_args": "--max-old-space-size=65500",
+    "out_file": "~/lora/log/lora-network-connector.log",
+    "error_file": "~/lora/log/lora-network-connector/ERROR.log",
+    "combine_logs": true,
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "env_production": {
+      "NODE_ENV": "production"
+    }
+  }, {
+    "name": "lora-join-server",
+    "script": "./lora-join-server/index.js",
+    "cwd": process.env.PWD,
+    "exec_mode": "fork",
+    "exec_interpreter": "node",
+    "instances": 1,
+    "autorestart": true,
+    "min_uptime": "30s",
+    "node_args": "--max-old-space-size=65500",
+    "out_file": "~/lora/log/lora-join-server.log",
+    "error_file": "~/lora/log/lora-join-server/ERROR.log",
+    "combine_logs": true,
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "env_production": {
+      "NODE_ENV": "production"
+    }
+  }]
+}
+

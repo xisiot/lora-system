@@ -2,14 +2,8 @@
 
 npm install
 
-cd lora-network-server
-pm2 start pm2.json
-echo "lora-network-server start successful"
+cp config.json lora-network-server/config/config.json
+cp config.json lora-network-connector/config/config.json
+cp config.json lora-join-server/config/config.json
 
-cd ../lora-network-connector
 pm2 start pm2.json
-echo "lora-network-connector start successful"
-
-cd ../lora-join-server
-pm2 start pm2.json
-echo "lora-join-server start successful"
