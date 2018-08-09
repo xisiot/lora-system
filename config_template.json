@@ -64,7 +64,7 @@
     },
     "schemaPath": {
       "messages": "config/messages.json",
-      "common": "config/common.jso"
+      "common": "config/common.json"
     },
     "topics": {
       "pubToApplicationServer": "AS-sub",
@@ -170,13 +170,46 @@
     },
     "schemaPath": {
       "messages": "config/messages.json",
-      "common": "config/common.jso"
+      "common": "config/common.json"
     },
     "topics": {
       "pubToCloud": "cloud-pub",
       "subFromCloud": "cloud-sub",
       "pubToServer": "AS-pub",
       "subFromServer": "AS-sub"
+    }
+  },
+  "mqClient_nct": {
+    "consumerGroup": {
+      "options": {
+        "kafkaHost": "localhost:9092",
+        "groupId": "lora-network-controller-message-dispatch-in",
+        "sessionTimeout": 15000,
+        "protocol": [
+          "roundrobin"
+        ],
+        "fromOffset": "latest"
+      },
+      "topics": [
+        "CS-sub"
+      ]
+    },
+    "client": {
+      "kafkaHost": "localhost:9092",
+      "clientId": "lora-network-controller-message-dispatch-out"
+    },
+    "producer": {
+      "requireAcks": 1,
+      "ackTimeoutMs": 100,
+      "partitionerType": 2
+    },
+    "schemaPath": {
+      "messages": "config/messages.json",
+      "common": "config/common.json"
+    },
+    "topics": {
+      "pubToServer": "CS-pub",
+      "subFromServer": "CS-sub"
     }
   },
   "pb": {
