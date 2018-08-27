@@ -10,6 +10,3 @@
 [submodule "lora-network-controller"]
 	path = lora-network-controller
 	url = git@github.com:xisiot/lora-network-controller.git
-[submodule "lora-application-server"]
-	path = lora-application-server
-	url = git@github.com:xisiot/lora-application-server.git
