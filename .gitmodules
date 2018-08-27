@@ -7,3 +7,6 @@
 [submodule "lora-join-server"]
 	path = lora-join-server
 	url = git@github.com:xisiot/lora-join-server.git
+[submodule "lora-network-controller"]
+	path = lora-network-controller
+	url = git@github.com:xisiot/lora-network-controller.git
