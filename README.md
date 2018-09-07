@@ -63,7 +63,7 @@ This system requires the following components imperatively.
 
 #### Getting Started
 
-- Install all the components listed in [System Requirements]()
+- Install all the components listed in [System Requirements](https://github.com/xisiot/lora-system/tree/master#system-requirements-1)
 
 - Pull the xisiot/lora-system docker image:
 
