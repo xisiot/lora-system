@@ -143,6 +143,9 @@
   "udp": {
     "port": 12234
   },
+  "http": {
+    "port": 3000
+  },
   "mqClient_as": {
     "consumerGroup": {
       "options": {
