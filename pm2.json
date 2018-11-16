@@ -10,8 +10,8 @@
     "autorestart": true,
     "min_uptime": "30s",
     "node_args": "--max-old-space-size=65500",
-    "out_file": "~/lora/log/lora-network-server.log",
-    "error_file": "~/lora/log/lora-network-server.log",
+    "out_file": "../log/lora-network-server.log",
+    "error_file": "../log/lora-network-server.log",
     "combine_logs": true,
     "env": {
       "NODE_ENV": "development"
@@ -29,8 +29,8 @@
     "autorestart": true,
     "min_uptime": "30s",
     "node_args": "--max-old-space-size=65500",
-    "out_file": "~/lora/log/lora-network-connector.log",
-    "error_file": "~/lora/log/lora-network-connector/ERROR.log",
+    "out_file": "../log/lora-network-connector.log",
+    "error_file": "../log/lora-network-connector/ERROR.log",
     "combine_logs": true,
     "env": {
       "NODE_ENV": "development"
@@ -48,8 +48,8 @@
     "autorestart": true,
     "min_uptime": "30s",
     "node_args": "--max-old-space-size=65500",
-    "out_file": "~/lora/log/lora-join-server.log",
-    "error_file": "~/lora/log/lora-join-server/ERROR.log",
+    "out_file": "../log/lora-join-server.log",
+    "error_file": "../log/lora-join-server/ERROR.log",
     "combine_logs": true,
     "env": {
       "NODE_ENV": "development"
@@ -68,8 +68,8 @@
     "autorestart": true,
     "min_uptime": "30s",
     "node_args": "--max-old-space-size=65500",
-    "out_file": "~/lora/log/lora-network-controller.log",
-    "error_file": "~/lora/log/lora-network-controller/ERROR.log",
+    "out_file": "../log/lora-network-controller.log",
+    "error_file": "../log/lora-network-controller/ERROR.log",
     "combine_logs": true,
     "env": {
       "NODE_ENV": "development"
@@ -79,4 +79,3 @@
     }
   }]
 }
-
