@@ -67,19 +67,19 @@ This system requires the following components imperatively.
 
 - Pull the xisiot/lora-system docker image:
 
-- ```sh
+  ```sh
   docker pull xisiot/lora-system:v1.0.0
   ```
 
 - Run the xisiot/lora-system image in a container, mapping your machine’s port 12234 to the container’s published port 12234 using `-p`:
 
-- ```sh
+  ```sh
   docker run -it --name="test" -p 12234:12234/udp xisiot/lora-system:latest /bin/bash
   ```
 
 - Start MySQL, Redis, MongoDB and Kafka in the background:
 
-- ```sh
+  ```sh
   service mysql start
   redis-server &
   mongod -config /etc/mongod.conf &
@@ -90,7 +90,7 @@ This system requires the following components imperatively.
 
 - Use `start.sh` to start LoRa system:
 
-- ```sh
+  ```sh
   cd ../lora/lora-system
   ./start.sh
   ```
