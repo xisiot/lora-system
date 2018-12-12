@@ -1,1 +1,8 @@
 site_name: Xis LoRa documentation
+nav:
+    - Home: 
+      - Home: index.md
+    - Network Server: 
+      - Overview: Server/index.md
+      - HTTP API: Server/http.md
+theme: readthedocs
