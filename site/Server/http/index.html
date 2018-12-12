@@ -1,183 +1,676 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        
-        
-        <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Http - Xis LoRa documentation</title>
-        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="../../css/font-awesome.min.css" rel="stylesheet">
-        <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>HTTP API - Xis LoRa documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap-3.0.3.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
-    </head>
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "HTTP API";
+    var mkdocs_page_input_path = "Server/http.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
 
-    <body>
+<body class="wy-body-for-nav" role="document">
 
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
+  <div class="wy-grid-for-nav">
 
-                <!-- Collapsed navigation -->
-                <div class="navbar-header">
-                    <!-- Expander button -->
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="../..">Xis LoRa documentation</a>
-                </div>
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Xis LoRa documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
 
-                <!-- Expanded navigation -->
-                <div class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li >
-                                <a href="../..">Welcome to MkDocs</a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Controller <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li >
-    <a href="../../Controller/">Index</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="dropdown active">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Server <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li >
-    <a href="../">Index</a>
-</li>
-                                    
-<li class="active">
-    <a href="./">Http</a>
-</li>
-                                </ul>
-                            </li>
-                        </ul>
-
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Search
-                            </a>
-                        </li>
-                            <li >
-                                <a rel="next" href="../">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="disabled">
-                                <a rel="prev" >
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Home</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../..">Home</a>
+                </li>
     </ul>
-</div></div>
-                <div class="col-md-9" role="main">
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Network Server</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../">Overview</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">HTTP API</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#user-register">User Register</a></li>
+    
 
+    <li class="toctree-l3"><a href="#user-login">User Login</a></li>
+    
+
+    <li class="toctree-l3"><a href="#application-register">Application Register</a></li>
+    
+
+    <li class="toctree-l3"><a href="#device-register">Device Register</a></li>
+    
+
+    <li class="toctree-l3"><a href="#gateway-register">Gateway Register</a></li>
+    
+
+    <li class="toctree-l3"><a href="#maccommand-sending">MACCommand Sending</a></li>
+    
+
+    <li class="toctree-l3"><a href="#error-list">Error List</a></li>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Xis LoRa documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Network Server &raquo;</li>
+        
+      
+    
+    <li>HTTP API</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
 </div>
-        </div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="user-register">User Register</h2>
+<ul>
+<li>POST </li>
+</ul>
+<pre><code class="javascript">/register
+</code></pre>
 
-        <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
-        </footer>
-        <script>
-            var base_url = "../..",
-                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
-        </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+<ul>
+<li>Request</li>
+</ul>
+<pre><code class="json">Headers:
+    Content-Type: application/x-www-form-urlencoded
+Body:
+    {
+        &quot;email&quot;: &quot;test@bupt.edu.cn&quot;,
+        &quot;password&quot;: &quot;123456&quot;
+    }
+</code></pre>
 
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+<ul>
+<li>Response</li>
+</ul>
+<pre><code class="json">Body:
+    {
+        &quot;userID&quot;: &quot;4c0c99ca5caef7c9f4707d641c726f55&quot;
+    }
+</code></pre>
+
+<hr />
+<h2 id="user-login">User Login</h2>
+<ul>
+<li>POST </li>
+</ul>
+<pre><code class="javascript">/login
+</code></pre>
+
+<ul>
+<li>Request</li>
+</ul>
+<pre><code class="json">Headers:
+    Content-Type: application/x-www-form-urlencoded
+Body:
+    {
+        &quot;email&quot;: &quot;test@bupt.edu.cn&quot;,
+        &quot;password&quot;: &quot;123456&quot;
+    }
+</code></pre>
+
+<ul>
+<li>Response</li>
+</ul>
+<pre><code class="json">Body:
+    {
+        &quot;userID&quot;: &quot;4c0c99ca5caef7c9f4707d641c726f55&quot;
+    }
+</code></pre>
+
+<hr />
+<h2 id="application-register">Application Register</h2>
+<ul>
+<li>POST </li>
+</ul>
+<pre><code class="javascript">/application
+</code></pre>
+
+<ul>
+<li>Request</li>
+</ul>
+<pre><code class="json">Headers:
+    Content-Type: application/x-www-form-urlencoded
+Body:
+    {
+        &quot;userID&quot;: &quot;4c0c99ca5caef7c9f4707d641c726f55 &quot;,
+        &quot;AppEUI&quot;: &quot;9816be466f467a17&quot;,
+        &quot;name&quot;: &quot;test&quot;
+    }
+</code></pre>
+
+<ul>
+<li>Response</li>
+</ul>
+<pre><code class="json">Body:
+    {
+        &quot;code&quot;: &quot;200&quot;,
+        &quot;message&quot;: &quot;success&quot;
+    }
+</code></pre>
+
+<hr />
+<h2 id="device-register">Device Register</h2>
+<ul>
+<li>POST </li>
+</ul>
+<pre><code class="javascript">/device
+</code></pre>
+
+<ul>
+<li>Request</li>
+</ul>
+<pre><code class="json">Headers:
+    Content-Type: application/x-www-form-urlencoded
+Body:
+    {
+        &quot;AppEUI&quot;: &quot;9816be466f467a17&quot;,
+        &quot;DevEUI&quot;: &quot;AAAAAAAAAAAAAAAA&quot;,
+        &quot;AppKey&quot;: &quot;FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF&quot;
+    }
+</code></pre>
+
+<ul>
+<li>Response</li>
+</ul>
+<pre><code class="json">Body:
+    {
+        &quot;code&quot;: &quot;200&quot;,
+        &quot;message&quot;: &quot;success&quot;
+    }
+</code></pre>
+
+<hr />
+<h2 id="gateway-register">Gateway Register</h2>
+<ul>
+<li>POST </li>
+</ul>
+<pre><code class="javascript">/gateway
+</code></pre>
+
+<ul>
+<li>Request</li>
+</ul>
+<pre><code class="json">Headers:
+    Content-Type: application/x-www-form-urlencoded
+Body:
+    {
+        &quot;userID&quot;: &quot;4c0c99ca5caef7c9f4707d641c726f55 &quot;,
+        &quot;gatewayId&quot;: &quot;bbbbbbbbbbbbbbbb&quot;
+    }
+</code></pre>
+
+<ul>
+<li>Response</li>
+</ul>
+<pre><code class="json">Body:
+    {
+        &quot;code&quot;: &quot;200&quot;,
+        &quot;message&quot;: &quot;success&quot;
+    }
+</code></pre>
+
+<hr />
+<h2 id="maccommand-sending">MACCommand Sending</h2>
+<ul>
+<li>POST </li>
+</ul>
+<pre><code class="javascript">/maccommand
+</code></pre>
+
+<ul>
+<li>Request</li>
+</ul>
+<pre><code class="json">Headers:
+    Content-Type: application/x-www-form-urlencoded
+Body:
+    {
+        &quot;DevAddr&quot;: &quot;12345678 &quot;,
+        &quot;MACCommand&quot;: &quot;030200ff01&quot;
+    }
+</code></pre>
+
+<ul>
+<li>Response</li>
+</ul>
+<pre><code class="json">Body:
+    {
+        &quot;code&quot;: &quot;200&quot;,
+        &quot;message&quot;: &quot;success&quot;
+    }
+</code></pre>
+
+<ul>
+<li>MAC Commands</li>
+</ul>
+<p>Overstriking means the downlink MACCommand</p>
+<table>
+<thead>
+<tr>
+<th align="center">cid</th>
+<th align="center">MAC Command</th>
+<th align="center">payload</th>
+<th align="center">length(byte)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">0x01</td>
+<td align="center">ResetInd</td>
+<td align="center">Version</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"><strong>ResetConf</strong></td>
+<td align="center"><strong>Version</strong></td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x02</td>
+<td align="center">LinkCheckReq</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"><strong>LinkCheckAns</strong></td>
+<td align="center"><strong>Margin</strong></td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><strong>GwCnt</strong></td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x03</td>
+<td align="center"><strong>LinkADRReq</strong></td>
+<td align="center"><strong>TXPower</strong></td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><strong>ChMask</strong></td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><strong>Redundancy</strong></td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">LinkADRAns</td>
+<td align="center">Status</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0x04</td>
+<td align="center"><strong>DutyCycleReq</strong></td>
+<td align="center"><strong>DutyCyclePL</strong></td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">DutyCycleAns</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0x05</td>
+<td align="center"><strong>RXParamSetupReq</strong></td>
+<td align="center"><strong>DLSettings</strong></td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><strong>Frequency</strong></td>
+<td align="center">3</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">RXParamSetupAns</td>
+<td align="center">Status</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0x06</td>
+<td align="center"><strong>DevStatusReq</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">DevStatusAns</td>
+<td align="center">Battery</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">Margin</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0x07</td>
+<td align="center"><strong>NewChannelReq</strong></td>
+<td align="center"><strong>ChIndex</strong></td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><strong>Freq</strong></td>
+<td align="center">3</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><strong>DrRange</strong></td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">NewChannelAns</td>
+<td align="center">Status</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0x08</td>
+<td align="center"><strong>RXTimingSetupReq</strong></td>
+<td align="center"><strong>Settings</strong></td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">RXTimingSetupAns</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0x09</td>
+<td align="center"><strong>TxParamSetupReq</strong></td>
+<td align="center"><strong>DwellTime</strong></td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">TxParamSetupAns</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0x0A</td>
+<td align="center"><strong>DlChannelReq</strong></td>
+<td align="center"><strong>ChIndex</strong></td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><strong>Freq</strong></td>
+<td align="center">3</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">DlChannelAns</td>
+<td align="center">Status</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0x0B</td>
+<td align="center">RekeyInd</td>
+<td align="center">Version</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"><strong>RekeyConf</strong></td>
+<td align="center"><strong>Version</strong></td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x0C</td>
+<td align="center"><strong>ADRParamSetupReq</strong></td>
+<td align="center"><strong>ADRParam</strong></td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">ADRParamSetupAns</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0x0D</td>
+<td align="center">DeviceTimeReq</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"><strong>DeviceTimeAns</strong></td>
+<td align="center"><strong>Seconds</strong></td>
+<td align="center">4</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><strong>FractionalSec</strong></td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x0E</td>
+<td align="center"><strong>ForceRejoinReq</strong></td>
+<td align="center"><strong>ForceRejoinReq</strong></td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td align="center">0x0F</td>
+<td align="center"><strong>RejoinParamSetupReq</strong></td>
+<td align="center"><strong>RejoinParamSetupReq</strong></td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">RejoinParamSetupAns</td>
+<td align="center">Status</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="error-list">Error List</h2>
+<table>
+<thead>
+<tr>
+<th align="center">code</th>
+<th align="center">message</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">2101</td>
+<td align="center">invalid email</td>
+</tr>
+<tr>
+<td align="center">2102</td>
+<td align="center">invalid password</td>
+</tr>
+<tr>
+<td align="center">2103</td>
+<td align="center">invalid AppEUI</td>
+</tr>
+<tr>
+<td align="center">2104</td>
+<td align="center">invalid DevEUI</td>
+</tr>
+<tr>
+<td align="center">2105</td>
+<td align="center">invalid AppKey</td>
+</tr>
+<tr>
+<td align="center">2106</td>
+<td align="center">invalid gatewayId</td>
+</tr>
+<tr>
+<td align="center">2107</td>
+<td align="center">invalid DevAddr</td>
+</tr>
+<tr>
+<td align="center">2108</td>
+<td align="center">invalid MACCommand</td>
+</tr>
+<tr>
+<td align="center">3101</td>
+<td align="center">user already registered</td>
+</tr>
+<tr>
+<td align="center">3102</td>
+<td align="center">user not registered</td>
+</tr>
+<tr>
+<td align="center">3103</td>
+<td align="center">user password error</td>
+</tr>
+<tr>
+<td align="center">3201</td>
+<td align="center">application already created</td>
+</tr>
+<tr>
+<td align="center">3202</td>
+<td align="center">application not created</td>
+</tr>
+<tr>
+<td align="center">3301</td>
+<td align="center">device already created</td>
+</tr>
+<tr>
+<td align="center">3401</td>
+<td align="center">gateway already created</td>
+</tr>
+</tbody>
+</table>
+              
             </div>
-            <div class="modal-body">
-                <p>
-                    From here you can search these documents. Enter
-                    your search terms below.
-                </p>
-                <form role="form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results"></div>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../" class="btn btn-neutral" title="Overview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
     </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="help shortcut"><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td class="next shortcut"><kbd>n</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td class="prev shortcut"><kbd>p</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td class="search shortcut"><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-            </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
         </div>
-    </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
 </div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
-    </body>
+</body>
 </html>
