@@ -2,9 +2,12 @@ site_name: Xis LoRa documentation
 nav:
     - Home: 
       - Home: index.md
+    - Install:
+      - Install: install.md
     - Network Server: 
       - Overview: Server/index.md
       - HTTP APIs: Server/http.md
+      - Data Format: Server/DataFormat.md
     - Network Controller:
       - MAC Command Organizer: Controller/index.md
 theme: readthedocs

@@ -13,21 +13,21 @@ POST /register
 * Request
 ```json
 Headers:
-    Content-Type: application/x-www-form-urlencoded
+  Content-Type: application/x-www-form-urlencoded
 
 Body:
-    {
-        "email": "test@xisiot.com",
-        "password": "123456"
-    }
+  {
+    "email": "test@xisiot.com",
+    "password": "123456"
+  }
 ```
 
 * Response
 ```json
 Body:
-    {
-        "userID": "4c0c99ca5caef7c9f4707d641c726f55"
-    }
+  {
+    "userID": "4c0c99ca5caef7c9f4707d641c726f55"
+  }
 ```
 
 ---
@@ -43,21 +43,21 @@ POST /login
 * Request
 ```json
 Headers:
-    Content-Type: application/x-www-form-urlencoded
+  Content-Type: application/x-www-form-urlencoded
 
 Body:
-    {
-        "email": "test@xisiot.com",
-        "password": "123456"
-    }
+  {
+    "email": "test@xisiot.com",
+    "password": "123456"
+  }
 ```
 
 * Response
 ```json
 Body:
-    {
-        "userID": "4c0c99ca5caef7c9f4707d641c726f55"
-    }
+  {
+    "userID": "4c0c99ca5caef7c9f4707d641c726f55"
+  }
 ```
 
 ---
@@ -73,23 +73,23 @@ POST /application
 * Request
 ```json
 Headers:
-    Content-Type: application/x-www-form-urlencoded
+  Content-Type: application/x-www-form-urlencoded
 
 Body:
-    {
-        "userID": "4c0c99ca5caef7c9f4707d641c726f55 ",
-        "AppEUI": "9816be466f467a17",
-        "name": "test"
-    }
+  {
+    "userID": "4c0c99ca5caef7c9f4707d641c726f55 ",
+    "AppEUI": "9816be466f467a17",
+    "name": "test"
+  }
 ```
 
 * Response
 ```json
 Body:
-    {
-        "code": "200",
-        "message": "success"
-    }
+  {
+    "code": "200",
+    "message": "success"
+  }
 ```
 
 ---
@@ -105,23 +105,23 @@ POST /device
 * Request
 ```json
 Headers:
-    Content-Type: application/x-www-form-urlencoded
+  Content-Type: application/x-www-form-urlencoded
 
 Body:
-    {
-        "AppEUI": "9816be466f467a17",
-        "DevEUI": "AAAAAAAAAAAAAAAA",
-        "AppKey": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
-    }
+  {
+    "AppEUI": "9816be466f467a17",
+    "DevEUI": "AAAAAAAAAAAAAAAA",
+    "AppKey": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
+  }
 ```
 
 * Response
 ```json
 Body:
-    {
-        "code": "200",
-        "message": "success"
-    }
+  {
+    "code": "200",
+    "message": "success"
+  }
 ```
 
 ---
@@ -137,22 +137,22 @@ POST /gateway
 * Request
 ```json
 Headers:
-    Content-Type: application/x-www-form-urlencoded
+  Content-Type: application/x-www-form-urlencoded
 
 Body:
-    {
-        "userID": "4c0c99ca5caef7c9f4707d641c726f55 ",
-        "gatewayId": "bbbbbbbbbbbbbbbb"
-    }
+  {
+    "userID": "4c0c99ca5caef7c9f4707d641c726f55 ",
+    "gatewayId": "bbbbbbbbbbbbbbbb"
+  }
 ```
 
 * Response
 ```json
 Body:
-    {
-        "code": "200",
-        "message": "success"
-    }
+  {
+    "code": "200",
+    "message": "success"
+  }
 ```
 
 ---
@@ -168,22 +168,22 @@ POST /maccommand
 * Request
 ```json
 Headers:
-    Content-Type: application/x-www-form-urlencoded
+  Content-Type: application/x-www-form-urlencoded
 
 Body:
-    {
-        "DevAddr": "12345678 ",
-        "MACCommand": "030200ff01"
-    }
+  {
+    "DevAddr": "12345678 ",
+    "MACCommand": "030200ff01"
+  }
 ```
 
 * Response
 ```json
 Body:
-    {
-        "code": "200",
-        "message": "success"
-    }
+  {
+    "code": "200",
+    "message": "success"
+  }
 ```
 
 * MAC Commands
