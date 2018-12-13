@@ -1,17 +1,27 @@
-# Welcome to MkDocs
+# Welcome to Xis LoRa System
 
-For full documentation visit [mkdocs.org](https://mkdocs.org).
+## Introduction
 
-## Commands
+## Architecture
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
+Our LoRa System consists of 5 main components:
 
-## Project layout
+- Connector
+- Server
+- Join Server
+- Controller
+- Application Server
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+## Specialties
+
+- High-Performance LoRaWAN Services
+
+- Scalable and Extensible Architecture
+
+- MAC Commands Enabled
+
+## Contact us
+
+Please contact us with [Email] [email].
+
+[email]: mailto:service@xisiot.com
