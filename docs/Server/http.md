@@ -1,17 +1,23 @@
-## User Register
+# HTTP APIs
 
-* POST 
+This document lists all HTTP API methods.
+
+## User Register
+ 
+This API is used for user register and returns the userID.
+
 ``` javascript
-/register
+POST /register
 ```
 
 * Request
 ```json
 Headers:
     Content-Type: application/x-www-form-urlencoded
+
 Body:
     {
-        "email": "test@bupt.edu.cn",
+        "email": "test@xisiot.com",
         "password": "123456"
     }
 ```
@@ -28,18 +34,20 @@ Body:
 
 ## User Login
 
-* POST 
+This API is used for user login and returns the userID.
+
 ``` javascript
-/login
+POST /login
 ```
 
 * Request
 ```json
 Headers:
     Content-Type: application/x-www-form-urlencoded
+
 Body:
     {
-        "email": "test@bupt.edu.cn",
+        "email": "test@xisiot.com",
         "password": "123456"
     }
 ```
@@ -56,15 +64,17 @@ Body:
 
 ## Application Register
 
-* POST 
+This API is used for application register.
+
 ``` javascript
-/application
+POST /application
 ```
 
 * Request
 ```json
 Headers:
     Content-Type: application/x-www-form-urlencoded
+
 Body:
     {
         "userID": "4c0c99ca5caef7c9f4707d641c726f55 ",
@@ -86,15 +96,17 @@ Body:
 
 ## Device Register
 
-* POST 
+This API is used for device register.
+
 ``` javascript
-/device
+POST /device
 ```
 
 * Request
 ```json
 Headers:
     Content-Type: application/x-www-form-urlencoded
+
 Body:
     {
         "AppEUI": "9816be466f467a17",
@@ -116,15 +128,17 @@ Body:
 
 ## Gateway Register
 
-* POST 
+This API is used for gateway register.
+
 ``` javascript
-/gateway
+POST /gateway
 ```
 
 * Request
 ```json
 Headers:
     Content-Type: application/x-www-form-urlencoded
+
 Body:
     {
         "userID": "4c0c99ca5caef7c9f4707d641c726f55 ",
@@ -145,15 +159,17 @@ Body:
 
 ## MACCommand Sending
 
-* POST 
+This API is used to send the downlink MACCommand.
+
 ``` javascript
-/maccommand
+POST /maccommand
 ```
 
 * Request
 ```json
 Headers:
     Content-Type: application/x-www-form-urlencoded
+
 Body:
     {
         "DevAddr": "12345678 ",
