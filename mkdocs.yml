@@ -4,7 +4,7 @@ nav:
       - Home: index.md
     - Network Server: 
       - Overview: Server/index.md
-      - HTTP API: Server/http.md
+      - HTTP APIs: Server/http.md
     - Network Controller:
       - MAC Command Organizer: Controller/index.md
 theme: readthedocs
