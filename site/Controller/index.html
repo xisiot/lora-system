@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>MAC Command Organizer - Xis LoRa documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "MAC Command Organizer";
+    var mkdocs_page_input_path = "Controller/index.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Xis LoRa documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Home</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="..">Home</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Install</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../install/">Install</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Network Server</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Server/">Overview</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Server/http/">HTTP APIs</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Server/DataFormat/">Data Format</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Network Controller</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">MAC Command Organizer</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#mac-command-organizer">MAC Command Organizer</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#1-mac-command-queue">1. MAC Command Queue</a></li>
+        
+            <li><a class="toctree-l4" href="#2-downlink-mac-command-algorithm">2. Downlink MAC Command Algorithm</a></li>
+        
+            <li><a class="toctree-l4" href="#3-uplink-mac-command-algorithm">3. Uplink MAC Command Algorithm</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Xis LoRa documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Network Controller &raquo;</li>
+        
+      
+    
+    <li>MAC Command Organizer</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="mac-command-organizer">MAC Command Organizer</h1>
+<p>The Network Server and the Network Controller implement the organization of the MAC Command.</p>
+<h2 id="1-mac-command-queue">1. MAC Command Queue</h2>
+<p>For each end-device, the Network Controller maintains a MAC Command queue with each element in the queue as shown in the following Table.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Field</th>
+<th align="center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">CID</td>
+<td align="center">MAC Command ID</td>
+</tr>
+<tr>
+<td align="center">Payload</td>
+<td align="center">Byte sequence that Command may contain</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-downlink-mac-command-algorithm">2. Downlink MAC Command Algorithm</h2>
+<h3 id="21-mac-command-req-downlink-algorithm">2.1 MAC Command Req Downlink Algorithm</h3>
+<p>The algorithm takes the time when uplink packet arrives as the start of the loop.</br>
+(1) Once the uplink data arrives, if the packet contains the MAC Command, the Network Server extracts the part and sends it to the Network Controller by an array.</br>
+(2) The Network Controller will read all the commands in the MAC Command Queue, and put them into the array Q, then traverse the array Q, then delete all Ans;</br>
+(3) The MAC Command in the data packet which the Network Controller receives contains Ans and Req, and the Network Controller will traverse all the data packet;</br>
+(4) When Encountering MAC Command Ans, the Network Controller will compare it with the MAC Command Req of the array Q, and record the position of the first unmatched Ans-Req pair as d;</br>
+(5) When Encountering MAC Command Req, the Network Controller will processe it;</br>
+(6) Clear the original MAC Command queue, and push all elements of array Q from position d into the new MAC Command queue;</br>
+(7) Traverse MAC Command Req Queue and application data Queue</br>
+(8) Construct downlink data according to the TABLE 1 policy and send it to the Network Connector by Network Server</br>
+(9) The Network Connector encapsulates the LoRa packet and delivers it to the gateway.</br></p>
+<p><center>TABLE 1 Downlink MAC Command and Application Data Group Package Policy</center></p>
+<table>
+<thead>
+<tr>
+<th align="center">Downlink Application Data</th>
+<th align="center">Downlink MAC Commands</th>
+<th align="center">Send Downlink Packet</th>
+<th align="center">FOpts</th>
+<th align="center">FRMPayload</th>
+<th align="center">Other</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">not have</td>
+<td align="center">not have</td>
+<td align="center">no</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center">have</td>
+<td align="center">not have</td>
+<td align="center">yes</td>
+<td align="center">null</td>
+<td align="center">Application Data</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center">not have</td>
+<td align="center">have(&gt; 15 bytes)</td>
+<td align="center">yes</td>
+<td align="center">null</td>
+<td align="center">MAC</td>
+<td align="center">FPort = 0</td>
+</tr>
+<tr>
+<td align="center">not have</td>
+<td align="center">have(&lt;= 15 bytes)</td>
+<td align="center">yes</td>
+<td align="center">MAC</td>
+<td align="center">null</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center">have</td>
+<td align="center">have(&gt; 15 bytes)</td>
+<td align="center">yes</td>
+<td align="center">null</td>
+<td align="center">MAC</td>
+<td align="center">FPort = 0</br>FPending = 1</td>
+</tr>
+<tr>
+<td align="center">have</td>
+<td align="center">have(&lt;= 15 bytes)</td>
+<td align="center">yes</td>
+<td align="center">null</td>
+<td align="center">Application Data</td>
+<td align="center">-</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="MAC Command Queue Schematic Diagram" src="./image/MACCommandQUeue.png" /></p>
+<h3 id="22-boundary-or-special-circumstances">2.2 Boundary or Special Circumstances</h3>
+<ul>
+<li>
+<p>RXParamSetupAns, RXTimingSetupAns, DlChannelAns three types MAC Command（TBD）</br></p>
+</li>
+<li>
+<p>Version Issue</br>
+  The server is based on LoRaWAN 1.1 protocol. Before issuing the MAC Command downlink,checking the LoRaWAN version supported by the device is principal. If the LoRaWAN version of device is out of support version,the MAC Command is directly removed from the queue.</p>
+</li>
+<li>
+<p>The total number of bytes of the MAC Command Queue exceeds 15 bytes, does not exceed the maximum allowed by FRMPayload, and there is data in the application data queue.</br></p>
+</li>
+<li>Command Req is all placed in FRMPayload</li>
+<li>FPort = 0</li>
+<li>
+<p>FPending = 1 </p>
+</li>
+<li>
+<p>The total number of bytes in the MAC Command Queue exceeds the maximum allowed by FRMPayload</br></p>
+</li>
+<li>Keep the last Command Req not sent</li>
+<li>FPending = 1</li>
+</ul>
+<h2 id="3-uplink-mac-command-algorithm">3. Uplink MAC Command Algorithm</h2>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../Server/DataFormat/" class="btn btn-neutral" title="Data Format"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../Server/DataFormat/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
