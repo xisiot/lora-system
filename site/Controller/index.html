@@ -276,29 +276,17 @@
 </table>
 <p><img alt="MAC Command Queue Schematic Diagram" src="https://github.com/xisiot/resources/blob/master/lora-system/images/MACCommandQueue.png" /></p>
 <h3 id="22-boundary-or-special-circumstances">2.2 Boundary or Special Circumstances</h3>
-<ul>
-<li>
-<p>RXParamSetupAns, RXTimingSetupAns, DlChannelAns three types MAC Command（TBD）</p>
-</li>
-<li>
-<p>Version Issue</p>
-</li>
-</ul>
+<h4 id="221-rxparamsetupans-rxtimingsetupans-dlchannelans-three-types-mac-commandtbd">2.2.1 RXParamSetupAns, RXTimingSetupAns, DlChannelAns three types MAC Command（TBD）</h4>
+<h4 id="222-version-issue">2.2.2 Version Issue</h4>
 <p>The server is based on LoRaWAN 1.1 protocol. Before issuing the MAC Command downlink,checking the LoRaWAN version supported by the device is principal. If the LoRaWAN version of device is out of support version,the MAC Command is directly removed from the queue.</p>
+<h4 id="223-the-total-number-of-bytes-of-the-mac-command-queue-exceeds-15-bytes-does-not-exceed-the-maximum-allowed-by-frmpayload-and-there-is-data-in-the-application-data-queue">2.2.3 The total number of bytes of the MAC Command Queue exceeds 15 bytes, does not exceed the maximum allowed by FRMPayload, and there is data in the application data queue</h4>
 <ul>
-<li>
-<p>The total number of bytes of the MAC Command Queue exceeds 15 bytes, does not exceed the maximum allowed by FRMPayload, and there is data in the application data queue</p>
-</li>
-<li>
-<p>Command Req is all placed in FRMPayload</p>
-</li>
+<li>Command Req is all placed in FRMPayload</li>
 <li>FPort = 0</li>
-<li>
-<p>FPending = 1 </p>
-</li>
-<li>
-<p>The total number of bytes in the MAC Command Queue exceeds the maximum allowed by FRMPayload</p>
-</li>
+<li>FPending = 1 </li>
+</ul>
+<h4 id="224-the-total-number-of-bytes-in-the-mac-command-queue-exceeds-the-maximum-allowed-by-frmpayload">2.2.4 The total number of bytes in the MAC Command Queue exceeds the maximum allowed by FRMPayload</h4>
+<ul>
 <li>Keep the last Command Req not sent</li>
 <li>FPending = 1</li>
 </ul>

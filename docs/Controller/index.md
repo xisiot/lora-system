@@ -46,19 +46,19 @@ The algorithm takes the time when uplink packet arrives as the start of the loop
 ![MAC Command Queue Schematic Diagram](https://github.com/xisiot/resources/blob/master/lora-system/images/MACCommandQueue.png)
 
 ### 2.2 Boundary or Special Circumstances
-* RXParamSetupAns, RXTimingSetupAns, DlChannelAns three types MAC Command（TBD）
+#### 2.2.1 RXParamSetupAns, RXTimingSetupAns, DlChannelAns three types MAC Command（TBD）
 
-* Version Issue
+#### 2.2.2 Version Issue
 
   The server is based on LoRaWAN 1.1 protocol. Before issuing the MAC Command downlink,checking the LoRaWAN version supported by the device is principal. If the LoRaWAN version of device is out of support version,the MAC Command is directly removed from the queue.
 
-* The total number of bytes of the MAC Command Queue exceeds 15 bytes, does not exceed the maximum allowed by FRMPayload, and there is data in the application data queue
+#### 2.2.3 The total number of bytes of the MAC Command Queue exceeds 15 bytes, does not exceed the maximum allowed by FRMPayload, and there is data in the application data queue
 
   * Command Req is all placed in FRMPayload
   * FPort = 0
   * FPending = 1 
 
-* The total number of bytes in the MAC Command Queue exceeds the maximum allowed by FRMPayload
+#### 2.2.4 The total number of bytes in the MAC Command Queue exceeds the maximum allowed by FRMPayload
   * Keep the last Command Req not sent
   * FPending = 1
 
@@ -215,4 +215,3 @@ The Network Server and the Network Controller implement the organization of the 
 * MAC Command Handler
 
   The MAC command Handler is the processing of the MAC command in the uplink data.
-  
