@@ -56,7 +56,7 @@ The Network Connector sends the parsed data and the transmission parameters to t
 
 * Field description
 
-<center>TABLE 1 Field Description of Uplink Data Format(NC to NS)</center>
+TABLE 1 Field Description of Uplink Data Format(NC to NS)</center>
 
 Field|Type|Example|Required
 :-:|:-:|:-:|:-:
@@ -66,7 +66,7 @@ identifier|Buffer|&lt;Buffer 02&gt;|Yes
 gatewayId|Buffer|&lt;Buffer b8 27 eb ff fe 52 0e 51&gt;|Yes
 rxpk|Object|Table 2 for instructions|Yes
 
-<center>TABLE 2 Description of rxpk </center>
+TABLE 2 Description of rxpk
 
 Field|Type|Example|Required
 :-:|:-:|:-:|:-:
@@ -84,7 +84,7 @@ lsnr|Number|5.1|Yes
 size|Number|32|No
 data|Object|Table 3 for instructions|Yes
 
-<center>TABLE 3 Description of data </center>
+TABLE 3 Description of data
 
 Field|Type|Example|Required
 :-:|:-:|:-:|:-:
@@ -92,14 +92,14 @@ MHDR|Object|Table 4 for instructions|Yes
 MACPayload|Object|Table 5 for instructions|Yes
 MIC|Buffer|&lt;Buffer 5c 97 73 61&gt;|Yes
 
-<center>TABLE 4 Description of MHDR </center>
+TABLE 4 Description of MHDR
 
 Field|Type|Example|Required
 :-:|:-:|:-:|:-:
 MType|Number|4|Yes
 Major|Number|0|Yes
 
-<center>TABLE 5 Description of MACPayload </center>
+TABLE 5 Description of MACPayload
 
 Field|Type|Example|Required
 :-:|:-:|:-:|:-:
@@ -107,7 +107,7 @@ FHDR|Object|Table 6 for instructions|Yes
 FPort|Buffer|&lt;Buffer 02&gt;|No
 FRMPayload|Buffer / Array|&lt;Buffer c9 77 36 15&gt; / [1]|No
 
-<center>TABLE 6 Description of FHDR </center>
+TABLE 6 Description of FHDR
 
 Field|Type|Example|Required
 :-:|:-:|:-:|:-:
@@ -116,7 +116,7 @@ FCtrl|Object|Table 7 for instructions|Yes
 FCnt|Buffer|&lt;Buffer 5c 97&gt;|Yes
 FOpts|Array|[1]|No
 
-<center>TABLE 7 Description of FCtrl </center>
+TABLE 7 Description of FCtrl
 
 Field|Type|Example|Required
 :-:|:-:|:-:|:-:
@@ -176,7 +176,7 @@ The Network Server sends the downlink data and the transmission parameters to th
 
 * Field description
 
-<center>TABLE 8 Field Description of Downlink Data Format(NS to NC)</center>
+TABLE 8 Field Description of Downlink Data Format(NS to NC)</center>
 
 Field|Type|Example|Required
 :-:|:-:|:-:|:-:
@@ -186,7 +186,7 @@ identifier|Buffer|&lt;Buffer 02&gt;|Yes
 gatewayId|Buffer|&lt;Buffer b8 27 eb ff fe 52 0e 51&gt;|Yes
 txpk|Object|Table 9 for instructions|Yes
 
-<center>TABLE 9 Description of txpk </center>
+TABLE 9 Description of txpk
 
 Field|Type|Example|Required
 :-:|:-:|:-:|:-:
@@ -202,21 +202,21 @@ ipol|Bool|false|Yes
 size|Number|32|No
 data|Object|Table 10 for instructions|Yes
 
-<center>TABLE 10 Description of data </center>
+TABLE 10 Description of data
 
 Field|Type|Example|Required
 :-:|:-:|:-:|:-:
 MHDR|Object|Table 11 for instructions|Yes
 MACPayload|Object|Table 12 for instructions|Yes
 
-<center>TABLE 11 Description of MHDR </center>
+TABLE 11 Description of MHDR
 
 Field|Type|Example|Required
 :-:|:-:|:-:|:-:
 MType|Number|5|Yes
 Major|Number|0|Yes
 
-<center>TABLE 12 Description of MACPayload </center>
+TABLE 12 Description of MACPayload
 
 Field|Type|Example|Required
 :-:|:-:|:-:|:-:
@@ -224,7 +224,7 @@ FHDR|Object|Table 13 for instructions|Yes
 FPort|Buffer|&lt;Buffer 02&gt;|No
 FRMPayload|Buffer / Array|&lt;Buffer c9 77 36 15&gt; / [1]|No
 
-<center>TABLE 13 Description of FHDR </center>
+TABLE 13 Description of FHDR
 
 Field|Type|Example|Required
 :-:|:-:|:-:|:-:
@@ -233,7 +233,7 @@ FCtrl|Object|Table 14 for instructions|Yes
 FCnt|Buffer|&lt;Buffer 5c 97&gt;|Yes
 FOpts|Array|[1]|No
 
-<center>TABLE 14 Description of FCtrl </center>
+TABLE 14 Description of FCtrl
 
 Field|Type|Example|Required
 :-:|:-:|:-:|:-:
@@ -274,7 +274,7 @@ The Network Server sends the join request data and the transmission parameters t
 
 * Field description
 
-<center>TABLE 15 Field Description of Uplink Data Format(NS to JS)</center>
+TABLE 15 Field Description of Uplink Data Format(NS to JS)</center>
 
 Field|Type|Example|Required
 :-:|:-:|:-:|:-:
@@ -284,7 +284,7 @@ identifier|Buffer|&lt;Buffer 02&gt;|Yes
 gatewayId|Buffer|&lt;Buffer b8 27 eb ff fe 52 0e 51&gt;|Yes
 rxpk|Object|Table 16 for instructions|Yes
 
-<center>TABLE 16 Description of rxpk </center>
+TABLE 16 Description of rxpk
 
 Field|Type|Example|Required
 :-:|:-:|:-:|:-:
@@ -343,7 +343,7 @@ The Join Server sends the join accept data and the transmission parameters to th
 
 * Field description
 
-<center>TABLE 17 Field Description of Downlink Data Format(JS to NS)</center>
+TABLE 17 Field Description of Downlink Data Format(JS to NS)</center>
 
 Field|Type|Example|Required
 :-:|:-:|:-:|:-:
@@ -353,7 +353,7 @@ identifier|Buffer|&lt;Buffer 02&gt;|Yes
 gatewayId|Buffer|&lt;Buffer b8 27 eb ff fe 52 0e 51&gt;|Yes
 rxpk|Object|Table 18 for instructions|Yes
 
-<center>TABLE 18 Description of rxpk </center>
+TABLE 18 Description of rxpk
 
 Field|Type|Example|Required
 :-:|:-:|:-:|:-:
@@ -372,7 +372,7 @@ size|Number|32|No
 raw|String|"ABd6Rm9GvhaYOiTeSHNF/rJXnRMP+2E="|Yes
 data|Object|Table 19 for instructions|Yes
 
-<center>TABLE 19 Description of data </center>
+TABLE 19 Description of data
 
 Field|Type|Example|Required
 :-:|:-:|:-:|:-:
@@ -380,7 +380,7 @@ MHDR|Object|Table 20 for instructions|Yes
 MACPayload|Buffer|&lt;Buffer c7 5a e7 53 ca c2 3d de 75 29 f7 7c 36 3a 11 f6&gt;|Yes
 DevAddr|Buffer|&lt;Buffer 00 08 fb 31&gt;|Yes
 
-<center>TABLE 20 Description of MHDR </center>
+TABLE 20 Description of MHDR
 
 Field|Type|Example|Required
 :-:|:-:|:-:|:-:
@@ -403,7 +403,7 @@ The Network Server sends the Uplink data and the transmission parameters to the 
 
 * Field description
 
-<center>TABLE 21 Field Description of Uplink Data Format(NS to AS)</center>
+TABLE 21 Field Description of Uplink Data Format(NS to AS)</center>
 
 Field|Type|Example|Required
 :-:|:-:|:-:|:-:
