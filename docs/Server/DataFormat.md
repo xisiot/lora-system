@@ -270,12 +270,12 @@ The Network Server sends the join request data and the transmission parameters t
       "raw": "",
       "data":{
         "MHDR": {
-          "MType":0,
-          "Major":0
+          "MType":"",
+          "Major":""
         },
-        "MHDRRaw":"00",
-        "MACPayload":"177a466f46be16983a24de487345feb2ebd4",
-        "MIC":"c274de2e"
+        "MHDRRaw":"",
+        "MACPayload":"",
+        "MIC":""
       }
     }
   }
