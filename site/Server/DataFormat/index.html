@@ -18,7 +18,7 @@
   <script>
     // Current page data
     var mkdocs_page_name = "Data Format";
-    var mkdocs_page_input_path = "Server\\DataFormat.md";
+    var mkdocs_page_input_path = "Server/DataFormat.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -55,6 +55,10 @@
                 <li class="">
                     
     <a class="" href="../..">Home</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../lora/">LoRa & LoRaWAN</a>
                 </li>
     </ul>
 	    </li>
@@ -211,7 +215,7 @@
 <ul>
 <li>Field description</li>
 </ul>
-<p>TABLE 1 Field Description of Uplink Data Format(NC to NS)</center></p>
+<p>TABLE 1. Field Description of Uplink Data Format(NC to NS)</center></p>
 <table>
 <thead>
 <tr>
@@ -254,7 +258,7 @@
 </tr>
 </tbody>
 </table>
-<p>TABLE 2 Description of rxpk</p>
+<p>TABLE 2. Description of rxpk</p>
 <table>
 <thead>
 <tr>
@@ -345,7 +349,7 @@
 </tr>
 </tbody>
 </table>
-<p>TABLE 3 Description of data</p>
+<p>TABLE 3. Description of data</p>
 <table>
 <thead>
 <tr>
@@ -376,7 +380,7 @@
 </tr>
 </tbody>
 </table>
-<p>TABLE 4 Description of MHDR</p>
+<p>TABLE 4. Description of MHDR</p>
 <table>
 <thead>
 <tr>
@@ -401,7 +405,7 @@
 </tr>
 </tbody>
 </table>
-<p>TABLE 5 Description of MACPayload</p>
+<p>TABLE 5. Description of MACPayload</p>
 <table>
 <thead>
 <tr>
@@ -432,7 +436,7 @@
 </tr>
 </tbody>
 </table>
-<p>TABLE 6 Description of FHDR</p>
+<p>TABLE 6. Description of FHDR</p>
 <table>
 <thead>
 <tr>
@@ -469,7 +473,7 @@
 </tr>
 </tbody>
 </table>
-<p>TABLE 7 Description of FCtrl</p>
+<p>TABLE 7. Description of FCtrl</p>
 <table>
 <thead>
 <tr>
@@ -561,7 +565,7 @@
 <ul>
 <li>Field description</li>
 </ul>
-<p>TABLE 8 Field Description of Downlink Data Format(NS to NC)</center></p>
+<p>TABLE 8. Field Description of Downlink Data Format(NS to NC)</center></p>
 <table>
 <thead>
 <tr>
@@ -604,7 +608,7 @@
 </tr>
 </tbody>
 </table>
-<p>TABLE 9 Description of txpk</p>
+<p>TABLE 9. Description of txpk</p>
 <table>
 <thead>
 <tr>
@@ -683,7 +687,7 @@
 </tr>
 </tbody>
 </table>
-<p>TABLE 10 Description of data</p>
+<p>TABLE 10. Description of data</p>
 <table>
 <thead>
 <tr>
@@ -708,7 +712,7 @@
 </tr>
 </tbody>
 </table>
-<p>TABLE 11 Description of MHDR</p>
+<p>TABLE 11. Description of MHDR</p>
 <table>
 <thead>
 <tr>
@@ -733,7 +737,7 @@
 </tr>
 </tbody>
 </table>
-<p>TABLE 12 Description of MACPayload</p>
+<p>TABLE 12. Description of MACPayload</p>
 <table>
 <thead>
 <tr>
@@ -764,7 +768,7 @@
 </tr>
 </tbody>
 </table>
-<p>TABLE 13 Description of FHDR</p>
+<p>TABLE 13. Description of FHDR</p>
 <table>
 <thead>
 <tr>
@@ -801,7 +805,7 @@
 </tr>
 </tbody>
 </table>
-<p>TABLE 14 Description of FCtrl</p>
+<p>TABLE 14. Description of FCtrl</p>
 <table>
 <thead>
 <tr>
@@ -861,7 +865,16 @@
       &quot;rssi&quot;: &quot;&quot;,
       &quot;lsnr&quot;: &quot;&quot;,
       &quot;size&quot;: &quot;&quot;,
-      &quot;raw&quot;: &quot;&quot;
+      &quot;raw&quot;: &quot;&quot;,
+      &quot;data&quot;:{
+        &quot;MHDR&quot;: {
+          &quot;MType&quot;:0,
+          &quot;Major&quot;:0
+        },
+        &quot;MHDRRaw&quot;:&quot;00&quot;,
+        &quot;MACPayload&quot;:&quot;177a466f46be16983a24de487345feb2ebd4&quot;,
+        &quot;MIC&quot;:&quot;c274de2e&quot;
+      }
     }
   }
 </code></pre>
@@ -869,7 +882,7 @@
 <ul>
 <li>Field description</li>
 </ul>
-<p>TABLE 15 Field Description of Uplink Data Format(NS to JS)</center></p>
+<p>TABLE 15. Field Description of Uplink Data Format(NS to JS)</center></p>
 <table>
 <thead>
 <tr>
@@ -912,7 +925,7 @@
 </tr>
 </tbody>
 </table>
-<p>TABLE 16 Description of rxpk</p>
+<p>TABLE 16. Description of rxpk</p>
 <table>
 <thead>
 <tr>
@@ -1001,6 +1014,74 @@
 <td align="center">"ABd6Rm9GvhaYOiTeSHNF/rJXnRMP+2E="</td>
 <td align="center">Yes</td>
 </tr>
+<tr>
+<td align="center">data</td>
+<td align="center">Object</td>
+<td align="center">Table 17 for instructions</td>
+<td align="center">Yes</td>
+</tr>
+</tbody>
+</table>
+<p>TABLE 17. Description of data</p>
+<table>
+<thead>
+<tr>
+<th align="center">Field</th>
+<th align="center">Type</th>
+<th align="center">Example</th>
+<th align="center">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">MHDR</td>
+<td align="center">Object</td>
+<td align="center">Table 18 for instructions</td>
+<td align="center">Yes</td>
+</tr>
+<tr>
+<td align="center">MHDRRaw</td>
+<td align="center">Buffer</td>
+<td align="center">&lt;Buffer 00&gt;</td>
+<td align="center">Yes</td>
+</tr>
+<tr>
+<td align="center">MACPayload</td>
+<td align="center">Buffer</td>
+<td align="center">&lt;Buffer 17 7a 46 6f 46 be 16 98 3a 24 de 48 73 45 fe b2 83 a0&gt;</td>
+<td align="center">Yes</td>
+</tr>
+<tr>
+<td align="center">MIC</td>
+<td align="center">Buffer</td>
+<td align="center">&lt;Buffer 21 f7 23 f3&gt;</td>
+<td align="center">Yes</td>
+</tr>
+</tbody>
+</table>
+<p>TABLE 18. Description of MHDR</p>
+<table>
+<thead>
+<tr>
+<th align="center">Field</th>
+<th align="center">Type</th>
+<th align="center">Example</th>
+<th align="center">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">MType</td>
+<td align="center">Number</td>
+<td align="center">0</td>
+<td align="center">Yes</td>
+</tr>
+<tr>
+<td align="center">Major</td>
+<td align="center">Number</td>
+<td align="center">0</td>
+<td align="center">Yes</td>
+</tr>
 </tbody>
 </table>
 <h2 id="join-server-to-network-server">Join Server to Network Server</h2>
@@ -1043,7 +1124,7 @@
 <ul>
 <li>Field description</li>
 </ul>
-<p>TABLE 17 Field Description of Downlink Data Format(JS to NS)</center></p>
+<p>TABLE 19. Field Description of Downlink Data Format(JS to NS)</center></p>
 <table>
 <thead>
 <tr>
@@ -1086,7 +1167,7 @@
 </tr>
 </tbody>
 </table>
-<p>TABLE 18 Description of rxpk</p>
+<p>TABLE 20. Description of rxpk</p>
 <table>
 <thead>
 <tr>
@@ -1183,7 +1264,7 @@
 </tr>
 </tbody>
 </table>
-<p>TABLE 19 Description of data</p>
+<p>TABLE 21. Description of data</p>
 <table>
 <thead>
 <tr>
@@ -1214,7 +1295,7 @@
 </tr>
 </tbody>
 </table>
-<p>TABLE 20 Description of MHDR</p>
+<p>TABLE 22. Description of MHDR</p>
 <table>
 <thead>
 <tr>
@@ -1254,7 +1335,7 @@
 <ul>
 <li>Field description</li>
 </ul>
-<p>TABLE 21 Field Description of Uplink Data Format(NS to AS)</center></p>
+<p>TABLE 23. Field Description of Uplink Data Format(NS to AS)</center></p>
 <table>
 <thead>
 <tr>

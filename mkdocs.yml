@@ -2,6 +2,7 @@ site_name: Xis LoRa documentation
 nav:
     - Home: 
       - Home: index.md
+      - LoRa & LoRaWAN: lora.md
     - Install:
       - Install: install.md
     - Network Server: 

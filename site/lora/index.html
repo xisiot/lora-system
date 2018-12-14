@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Overview - Xis LoRa documentation</title>
+  <title>LoRa & LoRaWAN - Xis LoRa documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,8 +17,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Overview";
-    var mkdocs_page_input_path = "Server/index.md";
+    var mkdocs_page_name = "LoRa & LoRaWAN";
+    var mkdocs_page_input_path = "lora.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -56,9 +56,15 @@
                     
     <a class="" href="..">Home</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../lora/">LoRa & LoRaWAN</a>
+    <a class="current" href="./">LoRa & LoRaWAN</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#what-is-lora-lorawan">What is LoRa &amp; LoRaWAN</a></li>
+    
+
+    </ul>
                 </li>
     </ul>
 	    </li>
@@ -78,20 +84,17 @@
 		
     <span class="caption-text">Network Server</span>
     <ul class="subnav">
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Overview</a>
-    <ul class="subnav">
-            
-    </ul>
+    <a class="" href="../Server/">Overview</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="http/">HTTP APIs</a>
+    <a class="" href="../Server/http/">HTTP APIs</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="DataFormat/">Data Format</a>
+    <a class="" href="../Server/DataFormat/">Data Format</a>
                 </li>
     </ul>
 	    </li>
@@ -129,11 +132,11 @@
     
       
         
-          <li>Network Server &raquo;</li>
+          <li>Home &raquo;</li>
         
       
     
-    <li>Overview</li>
+    <li>LoRa & LoRaWAN</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -143,7 +146,9 @@
           <div role="main">
             <div class="section">
               
-                
+                <h2 id="what-is-lora-lorawan">What is LoRa &amp; LoRaWAN</h2>
+<p>LoRa is the physical layer or the wireless modulation utilized to create the long range communication link. It's a spread spectrum modulation technique derived from chirp spread spectrum (CSS) technology. LoRa maintains the same low power characteristics as FSK modulation but significantly increases the communication range.</p>
+<p>The LoRaWAN open specification is a low power, wide area networking (LPWAN) protocol based on LoRa Technology. The specification, which is specified by LoRa Alliance, defines the communication protocol and system architecture for LoRa networks. The protocol and network architecture have the most influence in determining the battery lifetime of a node, the network capacity, the quality of service, the security, and the variety of applications served by the network.</p>
               
             </div>
           </div>
@@ -151,10 +156,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="http/" class="btn btn-neutral float-right" title="HTTP APIs">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../install/" class="btn btn-neutral float-right" title="Install">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../install/" class="btn btn-neutral" title="Install"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -180,10 +185,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../install/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="http/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../install/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
