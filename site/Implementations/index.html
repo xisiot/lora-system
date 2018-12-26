@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Implementations - Xis LoRa documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Implementations";
+    var mkdocs_page_input_path = "Implementations.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Xis LoRa documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Overview/">Overview</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Tutorials/">Tutorials</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Implementations</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#implementations">Implementations</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#connector">Connector</a></li>
+        
+            <li><a class="toctree-l3" href="#server">Server</a></li>
+        
+            <li><a class="toctree-l3" href="#join-server">Join Server</a></li>
+        
+            <li><a class="toctree-l3" href="#controller">Controller</a></li>
+        
+            <li><a class="toctree-l3" href="#motes-emulator">Motes Emulator</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Source&Contact/">Source&Contact</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Xis LoRa documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Implementations</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="implementations">Implementations</h1>
+<h2 id="connector">Connector</h2>
+<p>The LoRa network connector serves as the entrance of the whole X-LoRa system.</p>
+<h3 id="functions">Functions</h3>
+<ul>
+<li><strong>Gateway Connections</strong></li>
+</ul>
+<p>LoRa gateways directly connect to LoRa network connector and upload and download data for LoRa devices. The format of packages follows the Gateway to Server Interface Definition by SEMTECH Corporation, which can be referred in <strong>Section 1.2</strong>. The communications are carried on UDP. Connector will record two UDP ports for gateways separately, i.e., <em>pull port</em> and <em>push port</em>, after receiving corresponding type of data. Further downlink data is sent to the matching port. </p>
+<ul>
+<li><strong>Package Encapsulation and De-capsulation</strong></li>
+</ul>
+<p>One of the main jobs of LoRa network connector is to parse and encapsulate packages received from LoRa Gateways. Data from LoRa devices are kept in <em>data</em> field as an array in gateway packages. These data are byte sequences originally and encoded in <em>base64</em> format before uploading. The illustration below shows how the data of devices are packaged.</p>
+<p>[data field picture]</p>
+<p>After receiving packages from gateways, connector needs to extract device data from data field and decode each element with base64. Then, each data is parsed by bytes according to the message type that is come up with the MHDR field. All message types defined in LoRaWAN 1.1 are well supported. After each field is sliced, some necessary verifications are conducted, as well as decryption, which can be referred at following paragraphs. When everything’s fine, the message is published to the message queue on topic NC-pub for those subscribers interested. The message format is defined in <strong>Section 1.3</strong>. </p>
+<p>The LoRa network connector has also subscribed a topic named <em>NC-sub</em> where it can receive downlink messages for LoRa devices and encapsulate them to byte sequences. During this process, the messages are encrypted and the <em>MIC</em> is calculated. Then, the messages are encoded by <em>base64</em> and inserted into the <em>data</em> field of the JSON document for gateways. This kind of messages is called <em>PULL_RESP</em>, and forwarded to the <em>pull port</em> of gateways over UDP.</p>
+<ul>
+<li><strong>Verification</strong></li>
+</ul>
+<p>LoRa network connector is responsible for necessary message verifications and prevent illegal messages from entering the systems. All checks are listed below for clarity.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Item</th>
+<th align="center">Further Description</th>
+<th align="center">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">MIC Mismatch</td>
+<td align="center">Data corruption</td>
+<td align="center">Discard</td>
+</tr>
+<tr>
+<td align="center">Identify Error</td>
+<td align="center">Device or gateway does not exist</td>
+<td align="center">Discard</td>
+</tr>
+<tr>
+<td align="center">Illegal Format</td>
+<td align="center">Message is not assembled in standard way</td>
+<td align="center">Discard</td>
+</tr>
+<tr>
+<td align="center">Out of Boundary</td>
+<td align="center">Data exceed the maximum length</td>
+<td align="center">Discard</td>
+</tr>
+<tr>
+<td align="center">FCnt Error</td>
+<td align="center">The count of message frames is discordant</td>
+<td align="center">Discard or Ignore</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Security</strong></li>
+</ul>
+<p>LoRa network connector needs to encrypt and decrypt data to ensure privacy. The detailed processes of encryption and decryption can be found in LoRaWAN 1.0.2 standard. Connector is strictly stick to the standard to guarantee it accordance. Devices must make sure the root key <em>AppKey</em> is carefully saved in their hardware.</p>
+<p>On the other hand, the transmission between gateways and connector is transparent, which could bring security vulnerabilities. This can be fixed by conducting secured version of UDP (such as DTLS where TLS is used in UDP) both in connector side and gateway sides.</p>
+<ul>
+<li><strong>Load Balancing, availablity and throttling</strong></li>
+</ul>
+<p>LoRa network connector has also considered the performance since it is the entrance of the backend servers. Load balancing can be applied by deploying multiple connectors and proper schedule algorithms. The availability, in this way, is also kept. Throttling is required in connector to keep the vicious data flood out of the house.</p>
+<h3 id="interaction-with-lora-gateways">Interaction with LoRa Gateways</h3>
+<p>The LoRa network connector interacts with LoRa gateways with <strong>six</strong> types of messages in total. The detailed format can be learned from the open documents of Semtech Corporation. Here, we only give some brief instructions. </p>
+<p>The following three messages are sent from <strong>gateway</strong> to <strong>connector</strong>.</p>
+<ul>
+<li><strong>PULL_DATA</strong></li>
+</ul>
+<p>This message should be sent periodically by gateways to inform connector that the current gateway is alive. Besides, the UDP port gateway used to send PULL_DATA is recorded as <em>pull port</em>.</p>
+<ul>
+<li><strong>PUSH_DATA</strong></li>
+</ul>
+<p>This message contains a JSON object where three main kinds of data, i.e., the status of gateway itself, the status of LoRa device and the uplink data. The key names are <em>stat</em>, <em>rxpk</em> and <em>data</em> (inside <em>rxpk</em> field), respectively. The <em>rxpk</em> field is defined as an array so that it can contain multiple messages from different devices. This JSON object is serialized with ASCII-only characters and must not exceed 2048 octets. An example JSON object is listed below, which contains a <em>stat</em> field and one <em>rxpk</em> field. </p>
+<pre><code class="json">   { rxpk:
+      [ { tmst: 1545034506,
+          chan: 7,
+          rfch: 0,
+          freq: 435.9,
+          stat: 1,
+          modu: 'LORA',
+          datr: 'SF12BW125',
+          codr: '4/5',
+          lsnr: 2,
+          rssi: -119,
+          size: 24,
+          data: 'gJbhkgAgTQCw9hsOerYkPu9D' } ],
+     stat:
+      { time: '2018-12-17 16:15:06 GMT',
+        rxnb: 1,
+        rxok: 0,
+        rxfw: 0,
+        ackr: 100,
+        dwnb: 0,
+        txnb: 0 } 
+   }
+</code></pre>
+
+<p>The UDP port used by PUSH_DATA will be marked as <em>push port</em> in connector. </p>
+<ul>
+<li><strong>TX_ACK</strong></li>
+</ul>
+<p>This message is used to acknowledge the connector that the PULL_RESP (will be described below) message is received and some (maybe no) errors occurred.</p>
+<p>The following three kinds of messages are sent from <strong>connector</strong> to <strong>gateways</strong>.</p>
+<ul>
+<li><strong>PULL_ACK</strong></li>
+</ul>
+<p>This is to acknowledge the gateways that the PULL_DATA is successfully received.</p>
+<ul>
+<li><strong>PUSH_ACK</strong></li>
+</ul>
+<p>This is to acknowledge the gateways that the PUSH_DATA is successfully received.</p>
+<ul>
+<li><strong>PULL_RESP</strong></li>
+</ul>
+<p>This kind of message is used for connector to send downlink message to gateways. It has a similar structure as <em>rxpk</em> except that the key name of JSON object is changed to <em>txpk</em> and the total length cannot exceed 1000 octets. An example PULL_RESP message is shown as follow,</p>
+<pre><code class="json">   {‘txpk’: {'codr': '4/5',
+    'data': 'oJbhkgCjfwcGBgaWMvobrA==',
+    'datr': 'SF12BW125',
+    'freq': 435.9,
+    'imme': False,
+    'ipol': False,
+    'modu': 'LORA',
+    'powe': 25,
+    'rfch': 0,
+    'size': 16,
+    'tmst': 1546035144}
+   }
+</code></pre>
+
+<p>The PULL_RESP is sent to the gateway through <em>pull_port</em>. Therefore, gateways MUST send PULL_DATA before any PULL_RESP can be received.</p>
+<h3 id="interaction-with-lora-server">Interaction with LoRa Server</h3>
+<p>The connector publishes its uplink data to <em>message queue</em> and receive downlink data from it. In our X-LoRa system, the LoRa network server is responsible for direct interaction with connector. Therefore, network server will subscribe topic <em>NC-pub</em> and publish data on topic <em>NC-sub</em>. The data exchange format between connector and network server is defined in this section. </p>
+<ul>
+<li><strong>Connect to Network Server</strong></li>
+</ul>
+<p>Connector needs to upload all necessary and plain data to network server for further processing. In order to ensure consistency, the data format is designed the same as the LoRaWAN MAC payloads with each field parsed and pre-processed. On the other hand, the meta data (<em>stat</em> and <em>rxpk</em>) will also be sent without any changes. The example JSON format of an uplink message from connector is shown below,</p>
+<pre><code class="json">   { version: &lt;Buffer 02&gt;,
+     token: &lt;Buffer 93 b9&gt;,
+     identifier: &lt;Buffer 00&gt;,
+     gatewayId: &lt;Buffer 00 00 00 00 00 00 00 00&gt;,
+     stat:
+       { time: '2018-12-17 16:43:16 GMT',
+         rxnb: 1,
+         rxok: 0,
+         rxfw: 0,
+         ackr: 100,
+         dwnb: 0,
+         txnb: 0 },
+     rxpk:
+       [ { tmst: 1545036196,
+           chan: 7,
+           rfch: 0,
+           freq: 435.9,
+           stat: 1,
+           modu: 'LORA',
+           datr: 'SF12BW125',
+           codr: '4/5',
+           lsnr: 2,
+           rssi: -119,
+           size: 24,
+           data:
+            { MHDR: { MType: 4, Major: 0 },
+              MACPayload:
+               { FHDR:
+                  { DevAddr: &lt;Buffer 00 92 e1 96&gt;,
+                    FCtrl: { ADR: 0, ADRACKReq: 0, ACK: 1, ClassB: 0, FOptsLen: 0 },
+                    FCnt: &lt;Buffer 00 00 00 53&gt;,
+                    FOpts: [ ] },
+                 FPort: &lt;Buffer d2&gt;,
+                 FRMPayload: &lt;Buffer 68 65 6c 6c 6f&gt; },
+              },
+           raw: 'gJbhkgAgUwDSxFa50NDuZxdj' },
+       ]
+   }
+</code></pre>
+
+<ul>
+<li><strong>Network Server to Connector</strong></li>
+</ul>
+<p>The downlink data from network server to connector follows the same pattern so that here only gives an example for reference, </p>
+<pre><code class="json">   { version: &lt;Buffer 02&gt;,
+     token: &lt;Buffer 3e 7d&gt;,
+     identifier: &lt;Buffer 03&gt;,
+     gatewayId: &lt;Buffer 00 00 00 00 00 00 00 00&gt;,
+     txpk:
+      { imme: false,
+        tmst: 1546036645,
+        freq: 435.9,
+        rfch: 0,
+        powe: 25,
+        datr: 'SF12BW125',
+        modu: 'LORA',
+        codr: '4/5',
+        ipol: false,
+        data:
+         { MHDR: { MType: 5, Major: 0 },
+           MACPayload:
+            { FHDR:
+               { DevAddr: &lt;Buffer 00 92 e1 96&gt;,
+                 FCtrl: { ACK: 1, ADR: true, FPending: 0, FOptsLen: 3 },
+                 FCnt: &lt;Buffer 00 00 07 85&gt;,
+                 FOpts: [ { '06': {} }, { '06': {} }, { '06': {} },] },
+              FPort: &lt;Buffer e6&gt; } } } }
+</code></pre>
+
+<hr />
+<h2 id="server">Server</h2>
+<p>The LoRa network server is the core of the whole X-LoRa system.</p>
+<h3 id="functions_1">Functions</h3>
+<ul>
+<li><strong>Data Managemrnt and Service Scheduling</strong></li>
+</ul>
+<p>Server is responsible for data management and service scheduling. It invokes different modules according to the requirements of data processing. Depending on the type of uplink packet, the information in the packet is separated into specific formats. </p>
+<p>The data about MAC layer control commands is sent to Controller, the original application data is fed into Application Server and the join packets are forwarded to the Join Server without any interpretation. </p>
+<p>Moreover, Server is required to schedule packet transmissions on the downlink. One of LoRa gateways is selected to send downlink packets through exploiting the uplink transmission parameters such as RSSI and SNR. </p>
+<p>In addition, Server identifies the contents of downlink packets from two queues, which are responsible for application data and MAC commands.</p>
+<ul>
+<li><strong>Deduplication</strong></li>
+</ul>
+<p>Sometimes, LoRa devices may connect with more than one LoRa gateway. Therefore, single packet from a LoRa node is likely to be received by multiple LoRa gateways simultaneously. To avoid the waste of radio resources due to redundancy, Server is essential for filtering duplicate packets. Only one of the duplicate packets is fed into the subsequent processing modules such as Application Server and Controller. However, the transmission information such as SNR attached in the duplicate packets is not discarded and can be used as reference parameters for downlink routing. Finally, historical data is collected and stored in Server. It can provide the possibility for managers to check up the uplink/downlink packets and monitor the running states of LoRa devices and gateways.</p>
+<h3 id="http-apis">HTTP APIs</h3>
+<p>The HTTP APIs are used to register and issue downlink MAC Commands. It is convenient for users to manage the system. Furthermore, users can integrate X-LoRa into their own platforms using these HTTP APIs. All HTTP API methods are listed below.</p>
+<h4 id="user-register">User Register</h4>
+<p>Only users who have been registered can use the X-LoRa System. This API is used for user register and returns the userID used for gateway, application and device register.</p>
+<pre><code class="javascript">POST /register
+</code></pre>
+
+<ul>
+<li>Request</li>
+</ul>
+<pre><code class="json">Headers:
+  Content-Type: application/x-www-form-urlencoded
+
+Body:
+  {
+    &quot;email&quot;: &quot;test@xisiot.com&quot;,
+    &quot;password&quot;: &quot;123456&quot;
+  }
+</code></pre>
+
+<ul>
+<li>Response</li>
+</ul>
+<pre><code class="json">Body:
+  {
+    &quot;userID&quot;: &quot;4c0c99ca5caef7c9f4707d641c726f55&quot;
+  }
+</code></pre>
+
+<h4 id="user-login">User Login</h4>
+<p>This API is used for user login and returns the userID.</p>
+<pre><code class="javascript">POST /login
+</code></pre>
+
+<ul>
+<li>Request</li>
+</ul>
+<pre><code class="json">Headers:
+  Content-Type: application/x-www-form-urlencoded
+
+Body:
+  {
+    &quot;email&quot;: &quot;test@xisiot.com&quot;,
+    &quot;password&quot;: &quot;123456&quot;
+  }
+</code></pre>
+
+<ul>
+<li>Response</li>
+</ul>
+<pre><code class="json">Body:
+  {
+    &quot;userID&quot;: &quot;4c0c99ca5caef7c9f4707d641c726f55&quot;
+  }
+</code></pre>
+
+<h4 id="application-register">Application Register</h4>
+<p>This API is used for application register.</p>
+<pre><code class="javascript">POST /application
+</code></pre>
+
+<ul>
+<li>Request</li>
+</ul>
+<pre><code class="json">Headers:
+  Content-Type: application/x-www-form-urlencoded
+
+Body:
+  {
+    &quot;userID&quot;: &quot;4c0c99ca5caef7c9f4707d641c726f55 &quot;,
+    &quot;AppEUI&quot;: &quot;9816be466f467a17&quot;,
+    &quot;name&quot;: &quot;test&quot;
+  }
+</code></pre>
+
+<ul>
+<li>Response</li>
+</ul>
+<pre><code class="json">Body:
+  {
+    &quot;code&quot;: &quot;200&quot;,
+    &quot;message&quot;: &quot;success&quot;
+  }
+</code></pre>
+
+<h4 id="device-register">Device Register</h4>
+<p>This API is used for device register.</p>
+<pre><code class="javascript">POST /device
+</code></pre>
+
+<ul>
+<li>Request</li>
+</ul>
+<pre><code class="json">Headers:
+  Content-Type: application/x-www-form-urlencoded
+
+Body:
+  {
+    &quot;AppEUI&quot;: &quot;9816be466f467a17&quot;,
+    &quot;DevEUI&quot;: &quot;AAAAAAAAAAAAAAAA&quot;,
+    &quot;AppKey&quot;: &quot;FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF&quot;
+  }
+</code></pre>
+
+<ul>
+<li>Response</li>
+</ul>
+<pre><code class="json">Body:
+  {
+    &quot;code&quot;: &quot;200&quot;,
+    &quot;message&quot;: &quot;success&quot;
+  }
+</code></pre>
+
+<h4 id="gateway-register">Gateway Register</h4>
+<p>This API is used for gateway register.</p>
+<pre><code class="javascript">POST /gateway
+</code></pre>
+
+<ul>
+<li>Request</li>
+</ul>
+<pre><code class="json">Headers:
+  Content-Type: application/x-www-form-urlencoded
+
+Body:
+  {
+    &quot;userID&quot;: &quot;4c0c99ca5caef7c9f4707d641c726f55 &quot;,
+    &quot;gatewayId&quot;: &quot;bbbbbbbbbbbbbbbb&quot;
+  }
+</code></pre>
+
+<ul>
+<li>Response</li>
+</ul>
+<pre><code class="json">Body:
+  {
+    &quot;code&quot;: &quot;200&quot;,
+    &quot;message&quot;: &quot;success&quot;
+  }
+</code></pre>
+
+<h4 id="issue-mac-commands">Issue MAC Commands</h4>
+<p>This API is used to send the downlink MACCommand.</p>
+<pre><code class="javascript">POST /maccommand
+</code></pre>
+
+<ul>
+<li>Request</li>
+</ul>
+<pre><code class="json">Headers:
+  Content-Type: application/x-www-form-urlencoded
+
+Body:
+  {
+    &quot;DevAddr&quot;: &quot;12345678 &quot;,
+    &quot;MACCommand&quot;: &quot;030200ff01&quot;
+  }
+</code></pre>
+
+<ul>
+<li>Response</li>
+</ul>
+<pre><code class="json">Body:
+  {
+    &quot;code&quot;: &quot;200&quot;,
+    &quot;message&quot;: &quot;success&quot;
+  }
+</code></pre>
+
+<ul>
+<li>MAC Commands</li>
+</ul>
+<p>All the MAC Commands defined in LoRaWAN 1.1 are listed below. Bold font means the downlink MAC Commands.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Cid</th>
+<th align="center">MAC Command</th>
+<th align="center">Payload</th>
+<th align="center">Length(byte)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">0x01</td>
+<td align="center">ResetInd</td>
+<td align="center">Version</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x01</td>
+<td align="center">ResetConf</td>
+<td align="center">Version</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x02</td>
+<td align="center">LinkCheckReq</td>
+<td align="center"></td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">0x02</td>
+<td align="center">LinkCheckAns</td>
+<td align="center">Margin<br> GwCnt</td>
+<td align="center">1<br>1</td>
+</tr>
+<tr>
+<td align="center">0x03</td>
+<td align="center">LinkADRReq</td>
+<td align="center">TXPower<br>ChMask<br>Redundancy</td>
+<td align="center">1<br>2<br>1</td>
+</tr>
+<tr>
+<td align="center">0x03</td>
+<td align="center">LinkADRAns</td>
+<td align="center">Status</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x04</td>
+<td align="center">DutyCycleReq</td>
+<td align="center">DutyCyclePL</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x04</td>
+<td align="center">DutyCycleAns</td>
+<td align="center"></td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">0x05</td>
+<td align="center">RXParamSetupReq</td>
+<td align="center">DLSettings<br>Frequency</td>
+<td align="center">1<br>3</td>
+</tr>
+<tr>
+<td align="center">0x05</td>
+<td align="center">RXParamSetupAns</td>
+<td align="center">Status</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x06</td>
+<td align="center">DevStatusReq</td>
+<td align="center"></td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">0x06</td>
+<td align="center">DevStatusAns</td>
+<td align="center">Battery<br>Margin</td>
+<td align="center">1<br>1</td>
+</tr>
+<tr>
+<td align="center">0x07</td>
+<td align="center">NewChannelReq</td>
+<td align="center">ChIndex<br>Freq<br>DrRange</td>
+<td align="center">1<br>3<br>1</td>
+</tr>
+<tr>
+<td align="center">0x07</td>
+<td align="center">NewChannelAns</td>
+<td align="center">Status</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x08</td>
+<td align="center">RXTimingSetupReq</td>
+<td align="center">Settings</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x08</td>
+<td align="center">RXTimingSetupAns</td>
+<td align="center"></td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">0x09</td>
+<td align="center">TxParamSetupReq</td>
+<td align="center">DwellTime</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x09</td>
+<td align="center">TxParamSetupAns</td>
+<td align="center"></td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">0x0A</td>
+<td align="center">DlChannelReq</td>
+<td align="center">ChIndex<br>Freq</td>
+<td align="center">1<br>3</td>
+</tr>
+<tr>
+<td align="center">0x0A</td>
+<td align="center">DlChannelAns</td>
+<td align="center">Status</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x0B</td>
+<td align="center">RekeyInd</td>
+<td align="center">Version</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x0B</td>
+<td align="center">RekeyConf</td>
+<td align="center">Version</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x0C</td>
+<td align="center">ADRParamSetupReq</td>
+<td align="center">ADRParam</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x0C</td>
+<td align="center">ADRParamSetupAns</td>
+<td align="center"></td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">0x0D</td>
+<td align="center">DeviceTimeReq</td>
+<td align="center"></td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">0x0D</td>
+<td align="center">DeviceTimeAns</td>
+<td align="center">Seconds<br>FractionalSec</td>
+<td align="center">4<br>1</td>
+</tr>
+<tr>
+<td align="center">0x0E</td>
+<td align="center">ForceRejoinReq</td>
+<td align="center">ForceRejoinReq</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td align="center">0x0F</td>
+<td align="center">RejoinParamSetupReq</td>
+<td align="center">RejoinParamSetupReq</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x0F</td>
+<td align="center">RejoinParamSetupAns</td>
+<td align="center">Status</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<h4 id="error-list">Error List</h4>
+<table>
+<thead>
+<tr>
+<th align="center">Code</th>
+<th align="center">Message</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">2101</td>
+<td align="center">invalid email</td>
+</tr>
+<tr>
+<td align="center">2102</td>
+<td align="center">invalid password</td>
+</tr>
+<tr>
+<td align="center">2103</td>
+<td align="center">invalid AppEUI</td>
+</tr>
+<tr>
+<td align="center">2104</td>
+<td align="center">invalid DevEUI</td>
+</tr>
+<tr>
+<td align="center">2105</td>
+<td align="center">invalid AppKey</td>
+</tr>
+<tr>
+<td align="center">2106</td>
+<td align="center">invalid gatewayId</td>
+</tr>
+<tr>
+<td align="center">2107</td>
+<td align="center">invalid DevAddr</td>
+</tr>
+<tr>
+<td align="center">2108</td>
+<td align="center">invalid MACCommand</td>
+</tr>
+<tr>
+<td align="center">3101</td>
+<td align="center">user already registered</td>
+</tr>
+<tr>
+<td align="center">3102</td>
+<td align="center">user not registered</td>
+</tr>
+<tr>
+<td align="center">3103</td>
+<td align="center">user password error</td>
+</tr>
+<tr>
+<td align="center">3201</td>
+<td align="center">application already created</td>
+</tr>
+<tr>
+<td align="center">3202</td>
+<td align="center">application not created</td>
+</tr>
+<tr>
+<td align="center">3301</td>
+<td align="center">device already created</td>
+</tr>
+<tr>
+<td align="center">3401</td>
+<td align="center">gateway already created</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="join-server">Join Server</h2>
+<p>The LoRa join server handles the registrations of LoRa devices according to LoRaWAN standard.</p>
+<h3 id="otaa-vs-abp">OTAA vs ABP</h3>
+<p>LoRaWAN standard defines two ways of activation for LoRa devices, i.e., Over-The-Air Activation (OTAA) and Activation by Personalization (ABP). All LoRa devices must be activated in either way before access the network. </p>
+<p>In OTAA mode, LoRa devices only need to store AppEUI, DevEUI (or JoinEUI in LoRaWAN standard 1.1) and AppKey in their hardware. Then, these devices can issue activations by sending join request messages to servers. Some necessary parameters will be generated by server and respond via join accept messages. Some other data (e.g. session keys) are generated by both devices and server. These data are coincident since they use the same arguments and algorithms.</p>
+<p>In ABP mode, all the necessary information is loaded in devices in the very beginning. These devices can interact with connector directly. Some previous operations need to be taken before enabling OTAA or adopting ABP to devices, please refer to Section 3.3.2 for more information.</p>
+<h3 id="functions_2">Functions</h3>
+<ul>
+<li><strong>Activation</strong></li>
+</ul>
+<p>LoRa join server is only responsible for handling devices with OTAA mode. The ABP based devices can access the network directly. The join requests are parsed by connector first. Then, network server will forward the requests to join server via message queue under topic Join-sub. After receiving the requests, join server will generate some necessary data such as the unique identifier DevAddr for devices. The DevAddr contains the NetID for purpose of roaming. Two session keys, i.e., NwkSKey and AppSKey, are also calculated according to the protocol. Another part of the join procedure is to initialize some physical parameters of devices. The RX1DRoffset defines the offset between uplink data rate and downlink data rate at first reception slot. The Rx2 Data rate sets the data rate for second reception slot. Furthermore, the RxDelay configures the delay between TX and first reception slot. The scope of RxDelay varies from 0s to 15s. The details can be found in RXTimingSetupReq command. All these values are region specific and set to their default values during activation.</p>
+<p>Join server also needs to generate join accept messages for responses. These messages are published on topic <em>Join-pub</em> and network server needs to get them generally.</p>
+<ul>
+<li><strong>Rejoin</strong></li>
+</ul>
+<p><strong>UNIMPLEMENTED</strong></p>
+<h3 id="interaction-with-lora-network-server">Interaction with LoRa Network Server</h3>
+<p>The LoRa join server subscribes the topic Join-sub to receive join requests from LoRa network server, and publishes join accept on topic Join-pub to LoRa network server. </p>
+<ul>
+<li><strong>Network Server to Join Server</strong></li>
+</ul>
+<pre><code class="json">   { MHDR: { MType: 0, Major: 0 },
+     MACPayload: {
+       AppEUI: &lt;Buffer 7b 80 60 6c af eb 0f 26&gt;,
+       DevEUI: &lt;Buffer 37 b8 90 3b 37 b8 90 3b&gt;,
+       DevNonce: &lt;Buffer 81 bf&gt;,
+     },
+   },
+</code></pre>
+
+<ul>
+<li><strong>Join Server to Network Server</strong></li>
+</ul>
+<pre><code class="json">   { MHDR: { MType: 1, Major: 0 },
+     MACPayload:
+     { AppNonce: &lt;Buffer 32 dc 97&gt;,
+       NetID: &lt;Buffer 00 00 00&gt;,
+       DevAddr: &lt;Buffer 00 92 e1 96&gt;,
+       DLSettings: &lt;Buffer c0&gt;,
+       RxDelay: &lt;Buffer 01&gt; },
+   },
+</code></pre>
+
+<hr />
+<h2 id="controller">Controller</h2>
+<p>The LoRa network controller focuses on processing and managing MAC commands, which are used to modify associated conﬁgurations or adjust transmission parameters in physical layer. </p>
+<h3 id="functions_3">Functions</h3>
+<p>The LoRa network controller implements the analysis of the uplink MAC Commands, performs corresponding algorithms, and generates the downlink MAC Commands which may be sent within the downlink packet or individually.  </p>
+<h4 id="mac-command-queue">MAC Command Queue</h4>
+<p>For each end-device, the LoRa network controller maintains a MAC Command queue with each element in the queue as shown in the following table.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Field</th>
+<th align="center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">CID</td>
+<td align="center">MAC Command ID</td>
+</tr>
+<tr>
+<td align="center">Payload</td>
+<td align="center">Byte sequence that Command may contain</td>
+</tr>
+</tbody>
+</table>
+<h4 id="mac-command-alogorithm">MAC Command Alogorithm</h4>
+<p>The step one starts as soon as the uplink packet arrives, and step one to step nine is continuous cycling.</p>
+<ul>
+<li>1.Once the uplink data arrives, if the packet contains the MAC Command, the LoRa Network Server extracts the part and sends it to the Network Controller by an array;</li>
+<li>2.The LoRa Network Controller will read all the commands in the MAC Command Request Queue, and put them into the array Q, then traverse the array Q, then delete all data in the MAC Command Answer Queue;</li>
+<li>3.The MAC Command in the data packet which the Network Controller receives contains answers and requests, and the Network Controller will traverse all the data packet;</li>
+<li>4.When Encountering MAC Command answer, the Network Controller will compare it with the array Q, and record the position of the first unmatched answer-request pair as d;</li>
+<li>5.When Encountering MAC Command request, the Network Controller will process it;</li>
+<li>6.Clear the original MAC Command Request Queue, and push all elements of array Q from position d into the new MAC Command Request Queue;</li>
+<li>7.Traverse MAC Command Request Queue and application data Queue;</li>
+<li>8.Construct downlink data according to the TABLE 1 policy and send it to the Network Connector by Network Server;</li>
+<li>9.The Network Connector encapsulates the LoRa packet and delivers it to the gateway.</li>
+</ul>
+<p><center>Downlink MAC Command and Application Data Group Package Policy</center></p>
+<table>
+<thead>
+<tr>
+<th align="center">Downlink Application Data</th>
+<th align="center">Downlink MAC Commands</th>
+<th align="center">Send Downlink Packet</th>
+<th align="center">FOpts</th>
+<th align="center">FRMPayload</th>
+<th align="center">Other</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Not Available</td>
+<td align="center">Not Available</td>
+<td align="center">No</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center">Is Available</td>
+<td align="center">Not Available</td>
+<td align="center">Yes</td>
+<td align="center">Null</td>
+<td align="center">Application Data</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center">Not Available</td>
+<td align="center">Is Available (&gt; 15 bytes)</td>
+<td align="center">Yes</td>
+<td align="center">Null</td>
+<td align="center">MAC</td>
+<td align="center">FPort = 0</td>
+</tr>
+<tr>
+<td align="center">Not Available</td>
+<td align="center">Is Available (&lt;= 15 bytes)</td>
+<td align="center">Yes</td>
+<td align="center">MAC</td>
+<td align="center">Null</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center">Is Available</td>
+<td align="center">Is Available (&gt; 15 bytes)</td>
+<td align="center">Yes</td>
+<td align="center">Null</td>
+<td align="center">MAC</td>
+<td align="center">FPort = 0</br>FPending = 1</td>
+</tr>
+<tr>
+<td align="center">Is Available</td>
+<td align="center">Is Available (&lt;= 15 bytes)</td>
+<td align="center">Yes</td>
+<td align="center">Null</td>
+<td align="center">Application Data</td>
+<td align="center">-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="interaction-with-lora-nework-server">Interaction with LoRa Nework Server</h3>
+<p>The LoRa join server subscribes the topic CS-sub to receive join requests from LoRa network server, and publishes join accept on topic CS-pub to LoRa network server.</p>
+<ul>
+<li><strong>Network Server to Network Controller</strong></li>
+</ul>
+<pre><code class="json">   {
+       DevAddr: &lt;Buffer 00 96 44 72&gt;,
+       data: [
+       {
+            0x01: { Version: &lt;Buffer 02&gt;, },
+       },
+    {
+        0x02: null,
+       },
+       {
+        0x03: { &quot;Status&quot;: &lt;Buffer 02&gt;, },
+       },
+    ],
+       adr: true,
+       devtx:
+         {
+           &quot;freq&quot;: 433.3,
+           &quot;datr&quot;: &quot;SF7BW125&quot;,
+           &quot;codr&quot;: &quot;4/6&quot;,
+         },
+       gwrx: [
+         {
+           gatewayId: &lt;Buffer b8 27 eb ff fe 52 0e 51&gt;,
+           time: &quot;2013-03-31T16:21:17.528002Z&quot;,
+           tmst: 3512348611,
+           chan: 2,
+           rfch: 0,
+           stat: 1,
+           modu: &quot;LORA&quot;,
+           rssi: -35,
+           lsnr: 5.1,
+           size: 32,
+         },
+       ],
+     }
+</code></pre>
+
+<ul>
+<li><strong>Network Controller to Network Server</strong></li>
+</ul>
+<pre><code class="json">    {
+       &quot;cid&quot;: &quot;payload&quot;,
+     }
+
+</code></pre>
+
+<p><em>Example:</em> </p>
+<pre><code class="json">    {
+       0x01: { &quot;Version&quot;: &lt;Buffer 02&gt;, },
+    }
+</code></pre>
+
+<hr />
+<h2 id="motes-emulator">Motes Emulator</h2>
+<p>This is a useful tool to emulate end devices (a.k.a. Motes) and test LoRa server based on <em>LoRaWAN™</em> <em>1.0.2 protocol</em>. </p>
+<h3 id="requirements">Requirements</h3>
+<ul>
+<li>Python 3.6</li>
+<li>Linux</li>
+</ul>
+<h3 id="installation">Installation</h3>
+<ul>
+<li>Use pip to install pipenv:</li>
+</ul>
+<pre><code class="sh">  (sudo) pip3 install pipenv
+</code></pre>
+
+<ul>
+<li>Clone this repo into a directory:</li>
+</ul>
+<pre><code class="sh">  git clone https://github.com/houluy/lora-motes-emulator.git
+</code></pre>
+
+<ul>
+<li>Use pipenv to create a virtual Python enviroment and install all the dependencies:</li>
+</ul>
+<pre><code class="sh">  pipenv --python 3 install
+</code></pre>
+
+<h3 id="see-the-helps">See the Helps</h3>
+<pre><code class="sh">pipenv run python main.py -h
+</code></pre>
+
+<p>or by:</p>
+<pre><code class="sh">pipenv shell
+python main.py -h
+</code></pre>
+
+<h3 id="usage">Usage</h3>
+<p>This tool can be used step by step as follows,</p>
+<ol>
+<li>
+<p>Copy a local <em>config</em> file and <em>device info</em> file from the templates, then modify the <em>src</em> and <em>dest</em> address as the address of test server and LoRa server.</p>
+</li>
+<li>
+<p>Modify device information in <code>device.json</code> you just copied. The information fields include <em>AppEUI</em>, <em>DevEUI</em>, <em>AppKey</em> and <em>GatewayEUI</em> (a.k.a. <em>GatewayID</em>).</p>
+</li>
+<li>
+<p>Install the tool, and start the virtual shell by command <code>pipenv shell</code>.</p>
+</li>
+<li>Totally four kinds of LoRa messages are supported: <em>pull data</em>, <em>join confirmed data up</em> (with or without <em>FOpts</em>) and <em>MAC Commands</em> <em>in FRMPayload field</em>. The examples are shown below:</li>
+</ol>
+<pre><code>python main.py pull
+
+python main.py join
+
+python main.py app -m (your uplink message, will be encoded by UTF-8) -f (your MACCommand in FOpts field)
+
+python main.py mac -c (your MAC Command in FRMPayload field)
+</code></pre>
+
+<p>If this is your first-time running, run <em>pull</em> and <em>join</em> commands in the very beginning to register the port of gateway and the LoRa device. The device info will be saved automatically in <em>models/device.pkl</em> using <em>pickle</em>, and loaded next time. Then, you can use <em>app</em> or <em>mac</em> to test your server. Here are the examples.</p>
+<pre><code>python main.py app -m helloworld -f 0302
+python main.py mac -c 0302
+</code></pre>
+
+<h3 id="contributions">Contributions</h3>
+<p>This repo is hosted on <a href="https://github.com/houluy/lora-motes-emulator">https://github.com/houluy/lora-motes-emulator</a> and under <em>MIT license</em>, any contribution or suggestion is welcome. Just open an issue or send a pull request.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Source&Contact/" class="btn btn-neutral float-right" title="Source&Contact">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Tutorials/" class="btn btn-neutral" title="Tutorials"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../Tutorials/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Source&Contact/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
