@@ -1,5 +1,5 @@
 site_name: Xis LoRa documentation
-page:
+pages:
     - Overview: index.md
     - Tutorials: 
       - Tutorials: Tutorials/index.md
