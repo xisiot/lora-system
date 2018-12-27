@@ -1,15 +1,13 @@
 site_name: Xis LoRa documentation
 pages:
     - Overview: index.md
-    - Tutorials: 
-      - Tutorials: Tutorials/index.md
+    - Tutorials: Tutorials.md
     - Implementations: 
       - Connector: Implementations/Connector.md
       - Server: Implementations/Server.md
       - Join Server: Implementations/Join.md
       - Controller: Implementations/Controller.md
       - Motes Emulator: Implementations/Motes.md
-    - Source&Contact: 
-      - Source&Contact: Source&Contact/index.md
+    - Source&Contact: Source&Contact.md
 theme: readthedocs
 copyright: Copyright &copy; 2018 <a href="https://www.xisiot.com/" target="_blank">Xisiot</a>, Maintained by the Xisiot Team.
