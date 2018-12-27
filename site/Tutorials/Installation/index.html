@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Installation - Xis LoRa documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Installation";
+    var mkdocs_page_input_path = "Tutorials\\Installation.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Xis LoRa documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Overview</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Tutorials</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">Installation</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#installation">Installation</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#installation-with-repositories">Installation with Repositories</a></li>
+        
+            <li><a class="toctree-l4" href="#installation-with-docker">Installation with Docker</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Configuration/">Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Installation of LoRa Web Server/">Installation of LoRa Web Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Usage/">Usage</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Application Integration/">Application Integration</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Implementations</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Implementations/Connector/">Connector</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Implementations/Server/">Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Implementations/Join/">Join Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Implementations/Controller/">Controller</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Implementations/Motes/">Motes Emulator</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Source&Contact/">Source&Contact</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Xis LoRa documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Tutorials &raquo;</li>
+        
+      
+    
+    <li>Installation</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="installation">Installation</h2>
+<p>There are two methods to deploy an X-LoRa system, i.e., installation with repositories or with Docker.</p>
+<h3 id="installation-with-repositories">Installation with Repositories</h3>
+<h4 id="system-requirements">System Requirements</h4>
+<p>It is necessary for users to make sure that all the prerequisites below have been installed before deploying X-LoRa from repositories.</p>
+<ul>
+<li>Node.js (version &gt;= 8)</li>
+<li>MySQL (version &gt;=5.6)</li>
+<li>Redis </li>
+<li>Kafka</li>
+<li>MongoDB</li>
+</ul>
+<h4 id="getteing-started">Getteing Started</h4>
+<p>After installing the required software, please follow the steps below to configure the environments.</p>
+<ul>
+<li>
+<p>Create a new database in MySQL.</p>
+</li>
+<li>
+<p>Start Kafka, Redis and MongoDB in the background.</p>
+</li>
+<li>
+<p>Clone this repo into a directory:</p>
+</li>
+</ul>
+<pre><code class="sh">  git clone https://github.com/xisiot/lora-system.git --recursive
+  cd lora-system
+</code></pre>
+
+<ul>
+<li>
+<p>Install all Node.js dependencies by using <code>npm install</code>. </p>
+</li>
+<li>
+<p>Copy a local <code>config.json</code> from <code>config_template.json</code>:</p>
+</li>
+</ul>
+<pre><code class="sh">  cp config_template.json config.json
+</code></pre>
+
+<ul>
+<li>
+<p>Modify the configurations of kafka, MySQL and other customized fields in <code>config.json</code>. The detailed configurations are described in Section 2.2.</p>
+</li>
+<li>
+<p>Use <code>start.sh</code> to start LoRa system:</p>
+</li>
+</ul>
+<pre><code class="sh">  ./start.sh
+</code></pre>
+
+<p>To test if the system has started properly, please refer to: <a href="../../Implementations/Motes/">Motes Emulator</a>.</p>
+<h3 id="installation-with-docker">Installation with Docker</h3>
+<h4 id="system-requiremwnts">System Requiremwnts</h4>
+<p>It is necessary for users to make sure that all the prerequisites below have been installed before deploying X-LoRa from Docker.</p>
+<ul>
+<li>Docker</li>
+</ul>
+<h4 id="getting-started">Getting Started</h4>
+<p>After successful installation of Docker, please follow the steps below:</p>
+<ul>
+<li>Pull the xisiot/lora-system docker image:</li>
+</ul>
+<pre><code class="sh">  docker pull xisiot/lora-system:latest
+</code></pre>
+
+<ul>
+<li>Run the xisiot/lora-system image in a container and map the port of 1700 to the container’s published port 1700 using option <code>-p</code>:</li>
+</ul>
+<pre><code class="sh">  docker run -it --name=&quot;test&quot; -p 1700:1700/udp -p 3000:3000/tcp xisiot/lora-system:latest /bin/bash
+</code></pre>
+
+<ul>
+<li>Start MySQL, Redis, MongoDB and Kafka in the background:</li>
+</ul>
+<pre><code class="sh">  service mysql start
+  redis-server &amp;
+  mongod -config /etc/mongod.conf &amp;
+  cd root/kafka
+  ./bin/zookeeper-server-start.sh -daemon config/zookeeper.properties
+  ./bin/kafka-server-start.sh -daemon config/server.properties
+</code></pre>
+
+<p>No more configurations need to be changed in this installation process.</p>
+<ul>
+<li>Use <code>start.sh</code> to start LoRa system:</li>
+</ul>
+<pre><code class="sh">  cd ../lora/lora-system
+  ./start.sh
+</code></pre>
+
+<p>To test if the system has started properly, please refer to: <a href="../../Implementations/Motes/">Motes Emulator</a>.</p>
+<hr />
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Configuration/" class="btn btn-neutral float-right" title="Configuration">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../.." class="btn btn-neutral" title="Overview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright &copy; 2018 <a href="https://www.xisiot.com/" target="_blank">Xisiot</a>, Maintained by the Xisiot Team.</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../.." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Configuration/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

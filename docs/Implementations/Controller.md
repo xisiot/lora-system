@@ -1,14 +1,14 @@
 ## Controller
 
-The LoRa™ network controller focuses on processing and managing MAC commands, which are used to modify associated conﬁgurations or adjust transmission parameters in physical layer. 
+The LoRa network controller focuses on processing and managing MAC commands, which are used to modify associated conﬁgurations or adjust transmission parameters in physical layer. 
 
 ### Functions
 
-The LoRa™ network controller implements the analysis of the uplink MAC Commands, performs corresponding algorithms, and generates the downlink MAC Commands which may be sent within the downlink packet or individually.  
+The LoRa network controller implements the analysis of the uplink MAC Commands, performs corresponding algorithms, and generates the downlink MAC Commands which may be sent within the downlink packet or individually.  
 
 #### MAC Command Queue
 
-For each end-device, the LoRa™ network controller maintains a MAC Command queue with each element in the queue as shown in the following table.
+For each end-device, the LoRa network controller maintains a MAC Command queue with each element in the queue as shown in the following table.
 
 |  Field  |              Description               |
 | :-----: | :------------------------------------: |
@@ -19,15 +19,15 @@ For each end-device, the LoRa™ network controller maintains a MAC Command queu
 
 The step one starts as soon as the uplink packet arrives, and step one to step nine is continuous cycling.
 
-1. Once the uplink data arrives, if the packet contains the MAC Command, the LoRa™ Network Server extracts the part and sends it to the Network Controller by an array;
-2. The LoRa™ Network Controller will read all the commands in the MAC Command Request Queue, and put them into the array Q, then traverse the array Q, then delete all data in the MAC Command Answer Queue;
+1. Once the uplink data arrives, if the packet contains the MAC Command, the LoRa Network Server extracts the part and sends it to the Network Controller by an array;
+2. The LoRa Network Controller will read all the commands in the MAC Command Request Queue, and put them into the array Q, then traverse the array Q, then delete all data in the MAC Command Answer Queue;
 3. The MAC Command in the data packet which the Network Controller receives contains answers and requests, and the Network Controller will traverse all the data packet;
 4. When Encountering MAC Command answer, the Network Controller will compare it with the array Q, and record the position of the first unmatched answer-request pair as d;
 5. When Encountering MAC Command request, the Network Controller will process it;
 6. Clear the original MAC Command Request Queue, and push all elements of array Q from position d into the new MAC Command Request Queue;
 7. Traverse MAC Command Request Queue and application data Queue;
 8. Construct downlink data according to the following table policy and send it to the Network Connector by Network Server;
-9. The Network Connector encapsulates the LoRa™ packet and delivers it to the gateway.
+9. The Network Connector encapsulates the LoRa packet and delivers it to the gateway.
 
 <center>Downlink MAC Command and Application Data Group Package Policy</center>
 
@@ -40,9 +40,9 @@ The step one starts as soon as the uplink packet arrives, and step one to step n
 |       Is Available        | Is Available (> 15 bytes)  |         Yes          | Null  |       MAC        | FPort = 0</br>FPending = 1 |
 |       Is Available        | Is Available (<= 15 bytes) |         Yes          | Null  | Application Data |             -              |
 
-### Interaction with LoRa™ Nework Server
+### Interaction with LoRa Nework Server
 
-The LoRa™ join server subscribes the topic CS-sub to receive join requests from LoRa™ network server, and publishes join accept on topic CS-pub to LoRa™ network server.
+The LoRa join server subscribes the topic CS-sub to receive join requests from LoRa network server, and publishes join accept on topic CS-pub to LoRa network server.
 
 * **Network Server to Network Controller**
 

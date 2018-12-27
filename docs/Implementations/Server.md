@@ -1,6 +1,6 @@
 ## Server
 
-The LoRa™ network server is the core of the whole X-LoRa system.
+The LoRa network server is the core of the whole X-LoRa system.
 
 ### Functions
 
@@ -10,13 +10,13 @@ Server is responsible for data management and service scheduling. It invokes dif
 
 The data about MAC layer control commands is sent to Controller, the original application data is fed into Application Server and the join packets are forwarded to the Join Server without any interpretation. 
 
-Moreover, Server is required to schedule packet transmissions on the downlink. One of LoRa™ gateways is selected to send downlink packets through exploiting the uplink transmission parameters such as RSSI and SNR. 
+Moreover, Server is required to schedule packet transmissions on the downlink. One of LoRa gateways is selected to send downlink packets through exploiting the uplink transmission parameters such as RSSI and SNR. 
 
 In addition, Server identifies the contents of downlink packets from two queues, which are responsible for application data and MAC commands.
 
 * **Deduplication**
 
-Sometimes, LoRa™ devices may connect with more than one LoRa™ gateway. Therefore, single packet from a LoRa™ device is likely to be received by multiple LoRa™ gateways simultaneously. To avoid the waste of radio resources due to redundancy, Server is essential for filtering duplicate packets. Only one of the duplicate packets is fed into the subsequent processing modules such as Application Server and Controller. However, the transmission information such as SNR attached in the duplicate packets is not discarded and can be used as reference parameters for downlink routing. Finally, historical data is collected and stored in Server. It can provide the possibility for managers to check up the uplink/downlink packets and monitor the running states of LoRa™ devices and gateways.
+Sometimes, LoRa devices may connect with more than one LoRa gateway. Therefore, single packet from a LoRa device is likely to be received by multiple LoRa gateways simultaneously. To avoid the waste of radio resources due to redundancy, Server is essential for filtering duplicate packets. Only one of the duplicate packets is fed into the subsequent processing modules such as Application Server and Controller. However, the transmission information such as SNR attached in the duplicate packets is not discarded and can be used as reference parameters for downlink routing. Finally, historical data is collected and stored in Server. It can provide the possibility for managers to check up the uplink/downlink packets and monitor the running states of LoRa devices and gateways.
 
 ### HTTP APIs
 

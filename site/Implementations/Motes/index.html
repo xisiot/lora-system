@@ -55,7 +55,29 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../../Tutorials/">Tutorials</a>
+    <span class="caption-text">Tutorials</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Tutorials/Installation/">Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Tutorials/Configuration/">Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Tutorials/Installation of LoRa Web Server/">Installation of LoRa Web Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Tutorials/Usage/">Usage</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Tutorials/Application Integration/">Application Integration</a>
+                </li>
+    </ul>
 	    </li>
           
             <li class="toctree-l1">
@@ -147,7 +169,7 @@
             <div class="section">
               
                 <h2 id="motes-emulator">Motes Emulator</h2>
-<p>This is a useful tool to emulate end devices (a.k.a. Motes) and test LoRa™ server based on <em>LoRaWAN™</em> <em>1.0.2 protocol</em>. </p>
+<p>This is a useful tool to emulate end devices (a.k.a. Motes) and test LoRa server based on <em>LoRaWAN™</em> <em>1.0.2 protocol</em>. </p>
 <h3 id="requirements">Requirements</h3>
 <ul>
 <li>Python 3.6</li>
@@ -193,7 +215,7 @@ python main.py -h
 <li>
 <p>Install the tool, and start the virtual shell by command <code>pipenv shell</code>.</p>
 </li>
-<li>Totally four kinds of LoRa™ messages are supported: <em>pull data</em>, <em>join confirmed data up</em> (with or without <em>FOpts</em>) and <em>MAC Commands</em> <em>in FRMPayload field</em>. The examples are shown below:</li>
+<li>Totally four kinds of LoRa messages are supported: <em>pull data</em>, <em>join confirmed data up</em> (with or without <em>FOpts</em>) and <em>MAC Commands</em> <em>in FRMPayload field</em>. The examples are shown below:</li>
 </ol>
 <pre><code>python main.py pull
 
@@ -204,7 +226,7 @@ python main.py app -m (your uplink message, will be encoded by UTF-8) -f (your M
 python main.py mac -c (your MAC Command in FRMPayload field)
 </code></pre>
 
-<p>If this is your first-time running, run <em>pull</em> and <em>join</em> commands in the very beginning to register the port of gateway and the LoRa™ device. The device info will be saved automatically in <em>models/device.pkl</em> using <em>pickle</em>, and loaded next time. Then, you can use <em>app</em> or <em>mac</em> to test your server. Here are the examples.</p>
+<p>If this is your first-time running, run <em>pull</em> and <em>join</em> commands in the very beginning to register the port of gateway and the LoRa device. The device info will be saved automatically in <em>models/device.pkl</em> using <em>pickle</em>, and loaded next time. Then, you can use <em>app</em> or <em>mac</em> to test your server. Here are the examples.</p>
 <pre><code>python main.py app -m helloworld -f 0302
 python main.py mac -c 0302
 </code></pre>

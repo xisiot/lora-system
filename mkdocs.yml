@@ -1,7 +1,12 @@
 site_name: Xis LoRa documentation
 pages:
     - Overview: index.md
-    - Tutorials: Tutorials.md
+    - Tutorials: 
+      - Installation: Tutorials/Installation.md
+      - Configuration: Tutorials/Configuration.md
+      - Installation of LoRa Web Server: Tutorials/Installation of LoRa Web Server.md
+      - Usage: Tutorials/Usage.md
+      - Application Integration: Tutorials/Application Integration.md
     - Implementations: 
       - Connector: Implementations/Connector.md
       - Server: Implementations/Server.md

@@ -1,6 +1,6 @@
 ## Motes Emulator
 
-This is a useful tool to emulate end devices (a.k.a. Motes) and test LoRa™ server based on *LoRaWAN™* *1.0.2 protocol*. 
+This is a useful tool to emulate end devices (a.k.a. Motes) and test LoRa server based on *LoRaWAN™* *1.0.2 protocol*. 
 
 ### Requirements
 
@@ -49,7 +49,7 @@ This tool can be used step by step as follows,
 2. Modify device information in `device.json` you just copied. The information fields include *AppEUI*, *DevEUI*, *AppKey* and *GatewayEUI* (a.k.a. *GatewayID*).
 
 3. Install the tool, and start the virtual shell by command `pipenv shell`.
-4. Totally four kinds of LoRa™ messages are supported: *pull data*, *join confirmed data up* (with or without *FOpts*) and *MAC Commands* *in FRMPayload field*. The examples are shown below:
+4. Totally four kinds of LoRa messages are supported: *pull data*, *join confirmed data up* (with or without *FOpts*) and *MAC Commands* *in FRMPayload field*. The examples are shown below:
 
 ```
 python main.py pull
@@ -61,7 +61,7 @@ python main.py app -m (your uplink message, will be encoded by UTF-8) -f (your M
 python main.py mac -c (your MAC Command in FRMPayload field)
 ```
 
-If this is your first-time running, run *pull* and *join* commands in the very beginning to register the port of gateway and the LoRa™ device. The device info will be saved automatically in *models/device.pkl* using *pickle*, and loaded next time. Then, you can use *app* or *mac* to test your server. Here are the examples.
+If this is your first-time running, run *pull* and *join* commands in the very beginning to register the port of gateway and the LoRa device. The device info will be saved automatically in *models/device.pkl* using *pickle*, and loaded next time. Then, you can use *app* or *mac* to test your server. Here are the examples.
 
 ```
 python main.py app -m helloworld -f 0302
