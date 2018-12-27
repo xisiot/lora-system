@@ -47,7 +47,7 @@ After installing the required software, please follow the steps below to configu
   ./start.sh
 ```
 
-To test if the system has started properly, please refer to: [Motes Emulator](Motes.md).
+To test if the system has started properly, please refer to: [Motes Emulator](Implementations/Motes.md).
 
 ### Installation with Docker
 
@@ -93,7 +93,7 @@ After successful installation of Docker, please follow the steps below:
   ./start.sh
 ```
 
-To test if the system has started properly, please refer to: [Motes Emulator](Motes.md).
+To test if the system has started properly, please refer to: [Motes Emulator](Implementations/Motes.md).
 
 ---
 

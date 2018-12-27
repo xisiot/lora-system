@@ -7,23 +7,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  <link rel="shortcut icon" href="../img/favicon.ico">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>Connector - Xis LoRa documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
     var mkdocs_page_name = "Connector";
-    var mkdocs_page_input_path = "Connector.md";
+    var mkdocs_page_input_path = "Implementations\\Connector.md";
     var mkdocs_page_url = null;
   </script>
   
-  <script src="../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
@@ -36,9 +36,9 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> Xis LoRa documentation</a>
+        <a href="../.." class="icon icon-home"> Xis LoRa documentation</a>
         <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
@@ -50,12 +50,12 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="..">Overview</a>
+    <a class="" href="../..">Overview</a>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <a class="" href="../Tutorials/">Tutorials</a>
+    <a class="" href="../../Tutorials/">Tutorials</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -103,7 +103,7 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../Source&Contact/">Source&Contact</a>
+    <a class="" href="../../Source&Contact/">Source&Contact</a>
 	    </li>
           
         </ul>
@@ -116,7 +116,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="..">Xis LoRa documentation</a>
+        <a href="../..">Xis LoRa documentation</a>
       </nav>
 
       
@@ -124,7 +124,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="..">Docs</a> &raquo;</li>
+    <li><a href="../..">Docs</a> &raquo;</li>
     
       
         
@@ -153,7 +153,7 @@
 <li><strong>Package Encapsulation and De-capsulation</strong></li>
 </ul>
 <p>One of the main jobs of LoRa™ network connector is to parse and encapsulate packages received from LoRa™ Gateways. Data from LoRa™ devices are kept in <em>data</em> field as an array in gateway packages. These data are byte sequences originally and encoded in <em>base64</em> format before uploading. The illustration below shows how the data of devices are packaged.</p>
-<p><img alt="DataField" src="https://github.com/xisiot/resources/blob/master/lora-system/images/DataField.jpg" /></p>
+<p><img alt="DataField" src="../DataField.png" /></p>
 <p>After receiving packages from gateways, connector needs to extract device data from data field and decode each element with base64. Then, each data is parsed by bytes according to the message type that is come up with the MHDR field. All message types defined in LoRaWAN™ 1.1 are well supported. After each field is sliced, some necessary verifications are conducted, as well as decryption, which can be referred at following paragraphs. When everything’s fine, the message is published to the message queue on topic NC-pub for those subscribers interested. The message format is defined in <a href="#interaction-with-loratm-server">Interaction with LoRa™ Server Section</a>. </p>
 <p>The LoRa™ network connector has also subscribed a topic named <em>NC-sub</em> where it can receive downlink messages for LoRa™ devices and encapsulate them to byte sequences. During this process, the messages are encrypted and the <em>MIC</em> is calculated. Then, the messages are encoded by <em>base64</em> and inserted into the <em>data</em> field of the JSON document for gateways. This kind of messages is called <em>PULL_RESP</em>, and forwarded to the <em>pull port</em> of gateways over UDP.</p>
 <ul>
@@ -359,7 +359,7 @@
         <a href="../Server/" class="btn btn-neutral float-right" title="Server">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../Tutorials/" class="btn btn-neutral" title="Tutorials"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../Tutorials/" class="btn btn-neutral" title="Tutorials"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -385,16 +385,16 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../Tutorials/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../../Tutorials/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../Server/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme.js" defer></script>
-      <script src="../search/main.js" defer></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
 </body>
 </html>

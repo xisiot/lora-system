@@ -12,7 +12,7 @@ The LoRa™ network connector serves as the entrance of the whole X-LoRa system.
 
    One of the main jobs of LoRa™ network connector is to parse and encapsulate packages received from LoRa™ Gateways. Data from LoRa™ devices are kept in *data* field as an array in gateway packages. These data are byte sequences originally and encoded in *base64* format before uploading. The illustration below shows how the data of devices are packaged.
 
-   ![DataField](https://github.com/xisiot/resources/blob/master/lora-system/images/DataField.jpg)
+   ![DataField](DataField.png)
 
    After receiving packages from gateways, connector needs to extract device data from data field and decode each element with base64. Then, each data is parsed by bytes according to the message type that is come up with the MHDR field. All message types defined in LoRaWAN™ 1.1 are well supported. After each field is sliced, some necessary verifications are conducted, as well as decryption, which can be referred at following paragraphs. When everything’s fine, the message is published to the message queue on topic NC-pub for those subscribers interested. The message format is defined in [Interaction with LoRa™ Server Section](#interaction-with-loratm-server). 
 

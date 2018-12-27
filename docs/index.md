@@ -35,7 +35,7 @@ Our X-LoRa System consists of six main components:
 * Application Server
 * Web management server
 
-![Architecture](https://github.com/xisiot/resources/blob/master/lora-system/images/Architecture.jpg)
+![Architecture](img/Architecture.png)
 
 Connector is the bridge between the LoRa™ gateway and Server, which provides the services for parsing and packaging the payload of Media Access Control (MAC) layer. Server is responsible for data management and service scheduling. Join Server is proposed to handle the activation requests of LoRa™ devices. Controller focuses on processing and managing MAC commands exchanged between LoRa™ server and LoRa™ devices in order to adjust LoRa™ transmission parameters. Application Server is responsible for the handling, encryption and decryption of application payloads. Web management server is designed as a user interface that allows for easy management of applications and devices via a web browser.
 

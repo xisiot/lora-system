@@ -3,10 +3,10 @@ nav:
     - 'Overview': index.md
     - 'Tutorials': Tutorials.md
     - 'Implementations': 
-      - 'Connector': Connector.md
-      - 'Server': Server.md
-      - 'Join Server': Join.md
-      - 'Controller': Controller.md
-      - 'Motes Emulator': Motes.md
+      - 'Connector': Implementations/Connector.md
+      - 'Server': Implementations/Server.md
+      - 'Join Server': Implementations/Join.md
+      - 'Controller': Implementations/Controller.md
+      - 'Motes Emulator': Implementations/Motes.md
     - 'Source&Contact': Source&Contact.md
 theme: readthedocs
