@@ -1,14 +1,14 @@
 site_name: Xis LoRa documentation
 nav:
     - Overview: index.md
-    - Tutorials: Tutorials.md
+    - Tutorials: Tutorials/index.md
     - Implementations: 
       - Connector: Implementations/Connector.md
       - Server: Implementations/Server.md
       - Join Server: Implementations/Join.md
       - Controller: Implementations/Controller.md
       - Motes Emulator: Implementations/Motes.md
-    - Source&Contact: Source&Contact.md
+    - Source&Contact: Source&Contact/index.md
 theme: readthedocs
 
 markdown_extensions:
