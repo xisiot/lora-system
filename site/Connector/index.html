@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Connector - Xis LoRa documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Connector";
+    var mkdocs_page_input_path = "Connector.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Xis LoRa documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Overview</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Tutorials/">Tutorials</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Implementations</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">Connector</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#connector">Connector</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#functions">Functions</a></li>
+        
+            <li><a class="toctree-l4" href="#interaction-with-loratm-gateways">Interaction with LoRa™ Gateways</a></li>
+        
+            <li><a class="toctree-l4" href="#interaction-with-loratm-server">Interaction with LoRa™ Server</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Server/">Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Join/">Join Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Controller/">Controller</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Motes/">Motes Emulator</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Source&Contact/">Source&Contact</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Xis LoRa documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Implementations &raquo;</li>
+        
+      
+    
+    <li>Connector</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="connector">Connector</h2>
+<p>The LoRa™ network connector serves as the entrance of the whole X-LoRa system.</p>
+<h3 id="functions">Functions</h3>
+<ul>
+<li><strong>Gateway Connections</strong></li>
+</ul>
+<p>LoRa™ gateways directly connect to LoRa™ network connector and upload and download data for LoRa™ devices. The format of packages follows the Gateway to Server Interface Definition by Semtech™ Corporation, which can be referred in <a href="#interaction-with-loratm-gateways">Interaction with LoRa™ Gateways Section</a>. The communications are carried on UDP. Connector will record two UDP ports for gateways separately, i.e., <em>pull port</em> and <em>push port</em>, after receiving corresponding type of data. Further downlink data is sent to the matching port. </p>
+<ul>
+<li><strong>Package Encapsulation and De-capsulation</strong></li>
+</ul>
+<p>One of the main jobs of LoRa™ network connector is to parse and encapsulate packages received from LoRa™ Gateways. Data from LoRa™ devices are kept in <em>data</em> field as an array in gateway packages. These data are byte sequences originally and encoded in <em>base64</em> format before uploading. The illustration below shows how the data of devices are packaged.</p>
+<p><img alt="DataField" src="https://github.com/xisiot/resources/blob/master/lora-system/images/DataField.jpg" /></p>
+<p>After receiving packages from gateways, connector needs to extract device data from data field and decode each element with base64. Then, each data is parsed by bytes according to the message type that is come up with the MHDR field. All message types defined in LoRaWAN™ 1.1 are well supported. After each field is sliced, some necessary verifications are conducted, as well as decryption, which can be referred at following paragraphs. When everything’s fine, the message is published to the message queue on topic NC-pub for those subscribers interested. The message format is defined in <a href="#interaction-with-loratm-server">Interaction with LoRa™ Server Section</a>. </p>
+<p>The LoRa™ network connector has also subscribed a topic named <em>NC-sub</em> where it can receive downlink messages for LoRa™ devices and encapsulate them to byte sequences. During this process, the messages are encrypted and the <em>MIC</em> is calculated. Then, the messages are encoded by <em>base64</em> and inserted into the <em>data</em> field of the JSON document for gateways. This kind of messages is called <em>PULL_RESP</em>, and forwarded to the <em>pull port</em> of gateways over UDP.</p>
+<ul>
+<li><strong>Verification</strong></li>
+</ul>
+<p>LoRa™ network connector is responsible for necessary message verifications and prevent illegal messages from entering the systems. All checks are listed below for clarity.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Item</th>
+<th align="center">Further Description</th>
+<th align="center">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">MIC Mismatch</td>
+<td align="center">Data corruption</td>
+<td align="center">Discard</td>
+</tr>
+<tr>
+<td align="center">Identify Error</td>
+<td align="center">Device or gateway does not exist</td>
+<td align="center">Discard</td>
+</tr>
+<tr>
+<td align="center">Illegal Format</td>
+<td align="center">Message is not assembled in standard way</td>
+<td align="center">Discard</td>
+</tr>
+<tr>
+<td align="center">Out of Boundary</td>
+<td align="center">Data exceed the maximum length</td>
+<td align="center">Discard</td>
+</tr>
+<tr>
+<td align="center">FCnt Error</td>
+<td align="center">The count of message frames is discordant</td>
+<td align="center">Discard or Ignore</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Security</strong></li>
+</ul>
+<p>LoRa™ network connector needs to encrypt and decrypt data to ensure privacy. The detailed processes of encryption and decryption can be found in LoRaWAN™ 1.0.2 standard. Connector is strictly stick to the standard to guarantee it accordance. Devices must make sure the root key <em>AppKey</em> is carefully saved in their hardware.</p>
+<p>On the other hand, the transmission between gateways and connector is transparent, which could bring security vulnerabilities. This can be fixed by conducting secured version of UDP (such as DTLS where TLS is used in UDP) both in connector side and gateway sides.</p>
+<ul>
+<li><strong>Load Balancing, Availablity and Throttling</strong></li>
+</ul>
+<p>LoRa™ network connector has also considered the performance since it is the entrance of the backend servers. Load balancing can be applied by deploying multiple connectors and proper schedule algorithms. The availability, in this way, is also kept. Throttling is required in connector to keep the vicious data flood out of the house.</p>
+<h3 id="interaction-with-loratm-gateways">Interaction with LoRa™ Gateways</h3>
+<p>The LoRa™ network connector interacts with LoRa™ gateways with <strong>six</strong> types of messages in total. The detailed format can be learned from the open documents of Semtech™ Corporation. Here, we only give some brief instructions. </p>
+<p>The following three messages are sent from <strong>gateway</strong> to <strong>connector</strong>.</p>
+<ul>
+<li><strong>PULL_DATA</strong></li>
+</ul>
+<p>This message should be sent periodically by gateways to inform connector that the current gateway is alive. Besides, the UDP port gateway used to send PULL_DATA is recorded as <em>pull port</em>.</p>
+<ul>
+<li><strong>PUSH_DATA</strong></li>
+</ul>
+<p>This message contains a JSON object where three main kinds of data, i.e., the status of gateway itself, the status of LoRa™ device and the uplink data. The key names are <em>stat</em>, <em>rxpk</em> and <em>data</em> (inside <em>rxpk</em> field), respectively. The <em>rxpk</em> field is defined as an array so that it can contain multiple messages from different devices. This JSON object is serialized with ASCII-only characters and must not exceed 2048 octets. An example JSON object is listed below, which contains a <em>stat</em> field and one <em>rxpk</em> field. </p>
+<pre><code class="json">   { rxpk:
+      [ { tmst: 1545034506,
+          chan: 7,
+          rfch: 0,
+          freq: 435.9,
+          stat: 1,
+          modu: 'LORA',
+          datr: 'SF12BW125',
+          codr: '4/5',
+          lsnr: 2,
+          rssi: -119,
+          size: 24,
+          data: 'gJbhkgAgTQCw9hsOerYkPu9D' } ],
+     stat:
+      { time: '2018-12-17 16:15:06 GMT',
+        rxnb: 1,
+        rxok: 0,
+        rxfw: 0,
+        ackr: 100,
+        dwnb: 0,
+        txnb: 0 } 
+   }
+</code></pre>
+
+<p>The UDP port used by PUSH_DATA will be marked as <em>push port</em> in connector. </p>
+<ul>
+<li><strong>TX_ACK</strong></li>
+</ul>
+<p>This message is used to acknowledge the connector that the PULL_RESP (will be described below) message is received and some (maybe no) errors occurred.</p>
+<p>The following three kinds of messages are sent from <strong>connector</strong> to <strong>gateways</strong>.</p>
+<ul>
+<li><strong>PULL_ACK</strong></li>
+</ul>
+<p>This is to acknowledge the gateways that the PULL_DATA is successfully received.</p>
+<ul>
+<li><strong>PUSH_ACK</strong></li>
+</ul>
+<p>This is to acknowledge the gateways that the PUSH_DATA is successfully received.</p>
+<ul>
+<li><strong>PULL_RESP</strong></li>
+</ul>
+<p>This kind of message is used for connector to send downlink message to gateways. It has a similar structure as <em>rxpk</em> except that the key name of JSON object is changed to <em>txpk</em> and the total length cannot exceed 1000 octets. An example PULL_RESP message is shown as follow,</p>
+<pre><code class="json">   {‘txpk’: {'codr': '4/5',
+    'data': 'oJbhkgCjfwcGBgaWMvobrA==',
+    'datr': 'SF12BW125',
+    'freq': 435.9,
+    'imme': False,
+    'ipol': False,
+    'modu': 'LORA',
+    'powe': 25,
+    'rfch': 0,
+    'size': 16,
+    'tmst': 1546035144}
+   }
+</code></pre>
+
+<p>The PULL_RESP is sent to the gateway through <em>pull_port</em>. Therefore, gateways MUST send PULL_DATA before any PULL_RESP can be received.</p>
+<h3 id="interaction-with-loratm-server">Interaction with LoRa™ Server</h3>
+<p>The connector publishes its uplink data to <em>message queue</em> and receive downlink data from it. In our X-LoRa system, the LoRa™ network server is responsible for direct interaction with connector. Therefore, network server will subscribe topic <em>NC-pub</em> and publish data on topic <em>NC-sub</em>. The data exchange format between connector and network server is defined in this section. </p>
+<ul>
+<li><strong>Connect to Network Server</strong></li>
+</ul>
+<p>Connector needs to upload all necessary and plain data to network server for further processing. In order to ensure consistency, the data format is designed the same as the LoRaWAN™ MAC payloads with each field parsed and pre-processed. On the other hand, the meta data (<em>stat</em> and <em>rxpk</em>) will also be sent without any changes. The example JSON format of an uplink message from connector is shown below,</p>
+<pre><code class="json">   { version: &lt;Buffer 02&gt;,
+     token: &lt;Buffer 93 b9&gt;,
+     identifier: &lt;Buffer 00&gt;,
+     gatewayId: &lt;Buffer 00 00 00 00 00 00 00 00&gt;,
+     stat:
+       { time: '2018-12-17 16:43:16 GMT',
+         rxnb: 1,
+         rxok: 0,
+         rxfw: 0,
+         ackr: 100,
+         dwnb: 0,
+         txnb: 0 },
+     rxpk:
+       [ { tmst: 1545036196,
+           chan: 7,
+           rfch: 0,
+           freq: 435.9,
+           stat: 1,
+           modu: 'LORA',
+           datr: 'SF12BW125',
+           codr: '4/5',
+           lsnr: 2,
+           rssi: -119,
+           size: 24,
+           data:
+            { MHDR: { MType: 4, Major: 0 },
+              MACPayload:
+               { FHDR:
+                  { DevAddr: &lt;Buffer 00 92 e1 96&gt;,
+                    FCtrl: { ADR: 0, ADRACKReq: 0, ACK: 1, ClassB: 0, FOptsLen: 0 },
+                    FCnt: &lt;Buffer 00 00 00 53&gt;,
+                    FOpts: [ ] },
+                 FPort: &lt;Buffer d2&gt;,
+                 FRMPayload: &lt;Buffer 68 65 6c 6c 6f&gt; },
+              },
+           raw: 'gJbhkgAgUwDSxFa50NDuZxdj' },
+       ]
+   }
+</code></pre>
+
+<ul>
+<li><strong>Network Server to Connector</strong></li>
+</ul>
+<p>The downlink data from network server to connector follows the same pattern so that here only gives an example for reference, </p>
+<pre><code class="json">   { version: &lt;Buffer 02&gt;,
+     token: &lt;Buffer 3e 7d&gt;,
+     identifier: &lt;Buffer 03&gt;,
+     gatewayId: &lt;Buffer 00 00 00 00 00 00 00 00&gt;,
+     txpk:
+      { imme: false,
+        tmst: 1546036645,
+        freq: 435.9,
+        rfch: 0,
+        powe: 25,
+        datr: 'SF12BW125',
+        modu: 'LORA',
+        codr: '4/5',
+        ipol: false,
+        data:
+         { MHDR: { MType: 5, Major: 0 },
+           MACPayload:
+            { FHDR:
+               { DevAddr: &lt;Buffer 00 92 e1 96&gt;,
+                 FCtrl: { ACK: 1, ADR: true, FPending: 0, FOptsLen: 3 },
+                 FCnt: &lt;Buffer 00 00 07 85&gt;,
+                 FOpts: [ { '06': {} }, { '06': {} }, { '06': {} },] },
+              FPort: &lt;Buffer e6&gt; } } } }
+</code></pre>
+
+<hr />
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Server/" class="btn btn-neutral float-right" title="Server">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Tutorials/" class="btn btn-neutral" title="Tutorials"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../Tutorials/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Server/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

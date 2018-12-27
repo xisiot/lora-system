@@ -41,13 +41,13 @@ After installing the required software, please follow the steps below to configu
 
 * Modify the configurations of kafka, MySQL and other customized fields in ``config.json``. The detailed configurations are described in Section 2.2.
 
-* Use ``start.sh`` to start LoRa system:
+* Use ``start.sh`` to start LoRa™ system:
 
 ```sh
   ./start.sh
 ```
 
-To test if the system has started properly, please refer to: Motes Emulator.
+To test if the system has started properly, please refer to: [Motes Emulator](Motes.md).
 
 ### Installation with Docker
 
@@ -86,14 +86,14 @@ After successful installation of Docker, please follow the steps below:
 
   No more configurations need to be changed in this installation process.
 
-* Use `start.sh` to start LoRa system:
+* Use `start.sh` to start LoRa™ system:
 
 ```sh
   cd ../lora/lora-system
   ./start.sh
 ```
 
-To test if the system has started properly, please refer to: Motes Emulator.
+To test if the system has started properly, please refer to: [Motes Emulator](Motes.md).
 
 ---
 
@@ -329,18 +329,18 @@ In general, the following options are necessary for users to modify according to
 - database.mysql.username: the username of MySQL
 - database.mysql.password: the user's password of MySQL
 - database.mysql.database: the database used for X-LoRa in MySQL
-- udp.port: the port for receiving UDP packets from LoRa Gateways(default value is 1700)
+- udp.port: the port for receiving UDP packets from LoRa™ Gateways(default value is 1700)
 - http.port: the port of HTTP interfaces(default value is 3000)
 
 Other configurations are free to change to fit the environments.
 
 ---
 
-## Installation of LoRa Web Server
+## Installation of LoRa™ Web Server
 
 #### System Requiremwnts
 
-All the requirements below should be met before installing the LoRa web server.
+All the requirements below should be met before installing the LoRa™ web server.
 
 * Apache (version: 2.4.* recommend: 2.4.7)
 * PHP (version>=7.0.0 recommend: 7.0.30)
@@ -407,7 +407,7 @@ All the requirements below should be met before installing the LoRa web server.
   php artisan migrate
 ```
 
-* Run the artisan command to start the LoRa web server system directly :
+* Run the artisan command to start the LoRa™ web server system directly :
 
 ```sh
   php artisan serve --host=0.0.0.0 --port=8000
@@ -452,7 +452,7 @@ Add the ``xxx.conf`` file to the ``/etc/init`` directory and modify the configur
      end script
 ```
 
-Run the following command to start the LoRa web server system :
+Run the following command to start the LoRa™ web server system :
 
 ```sh
   service lora-web-server start
@@ -487,7 +487,7 @@ Add the ``lora-web-server.service`` file to ``/lib/systemd/system/`` director
      WantedBy=multi-user.target
 ```
 
-Run the following command to start the LoRa web server system :
+Run the following command to start the LoRa™ web server system :
 
 ```sh
   systemctl start lora-web-server.service
@@ -499,13 +499,13 @@ Run the following command to start the LoRa web server system :
 
 This section describes the detailed instructions of X-LoRa. It shows how to create applications, register gateways and activate devices.
 
-#### Registration on LoRa Web
+#### Registration on LoRa™ Web
 
-Users need to register their applications, gateways and devices on LoRa web before further operations.
+Users need to register their applications, gateways and devices on the LoRa™ web before further operations.
 
 ##### User Management
 
-Create an account for the LoRa web and start enjoying the service the LoRa server provided. With a LoRa web account, the following can be done:
+Create an account for the LoRa™ web and start enjoying the service the LoRa™ server provided. With a LoRa™ web account, the following can be done:
 
 * Creating applications, gateways and devices
 * Easy access to the transmission data and application data
@@ -522,7 +522,7 @@ It's necessary to fill in the following fields when register an account. Note th
 
 ##### Gateway Management
 
-LoRa gateways directly connect to LoRa network connector and upload and download data for LoRa devices. However, registering gateway in the LoRa web is firstly needed. The verification of the existence of the gateways without registering in the LoRa web can’t success.
+LoRa™ gateways directly connect to LoRa™ network connector and upload and download data for LoRa™ devices. However, registering gateway in the LoRa™ web is firstly needed. The verification of the existence of the gateways without registering in the LoRa™ web can’t success.
 
 The fields in the following table need to be filled in during the registration of gateways. Note that the gatewayID field should be unique. If not, the registration can’t be successful.
 
@@ -551,11 +551,11 @@ Once the registration is successful, the web will return a list of applications 
 |      Field       |  Type  |            Description             | Attribute |
 | :--------------: | :----: | :--------------------------------: | :-------: |
 | Application Name | String |          Application name          | Required  |
-|      AppEUI      | String | LoRa application unique identifier |  Unique   |
+|      AppEUI      | String | LoRa™ application unique identifier |  Unique   |
 
 ##### Device Management
 
-Before LoRa devices are able to connect to the LoRa server, users should register them in the LoRa web. Without that, the verification of the existence of the devices will fail.
+Before LoRa™ devices are able to connect to the LoRa™ server, users should register them in the LoRa™ web. Without that, the verification of the existence of the devices will fail.
 
 Device registration must be performed after the application is registered, which has been explained in the previous section. Due to the fact that activation of an end-device can be achieved in two ways, device registration can be divided into two categories, i.e., Over-The-Air Activation (OTAA) and Activation by Personalization (ABP) modes. The attribute fields required for the registration of the two modes have different requirements, i.e.,
 
@@ -569,7 +569,7 @@ Device registration must be performed after the application is registered, which
 
   | Field  |  Type  |          Description          | Attribute |
   | :----: | :----: | :---------------------------: | :-------: |
-  | DevEUI | String | LoRa device unique identifier |  Unique   |
+  | DevEUI | String | LoRa™ device unique identifier |  Unique   |
   | AppKey | String |    AES-128 application key    | Required  |
 
 * ABP Mode
@@ -582,23 +582,23 @@ Device registration must be performed after the application is registered, which
 
   |  Field  |  Type  |          Description          | Attribute |
   | :-----: | :----: | :---------------------------: | :-------: |
-  | DevEUI  | String | LoRa device unique identifier |  Unique   |
+  | DevEUI  | String | LoRa™ device unique identifier |  Unique   |
   | AppKey  | String |    AES-128 application key    | Required  |
-  | DevAddr | String |  LoRa device unique address   |  Unique   |
+  | DevAddr | String |  LoRa™ device unique address   |  Unique   |
   | NwkSKey | String |      Network session key      | Required  |
   | AppSKey | String |    Application session key    | Required  |
 
-#### Interaction with LoRa Server
-For over-the-air activation, LoRa devices must follow a join procedure prior to participating in data exchanges with the Network Server. An end-device has to go through a new join procedure every time when it has lost the session context information. After that, devices can send the uplink messages and receive the downlink messages from the LoRa server.
+#### Interaction with LoRa™ Server
+For over-the-air activation, LoRa™ devices must follow a join procedure prior to participating in data exchanges with the Network Server. An end-device has to go through a new join procedure every time when it has lost the session context information. After that, devices can send the uplink messages and receive the downlink messages from the LoRa™ server.
 
-Activating a LoRa devices by personalization means that all the necessary information is stored in devices in the very beginning. These devices can interact with LoRa server directly.
+Activating a LoRa™ devices by personalization means that all the necessary information is stored in devices in the very beginning. These devices can interact with LoRa™ server directly.
 
 ## Application Integration
 
 #### Introduction
 
 This section describes how to integrate customized application servers into X-LoRa systems.<br>
-Application Server is responsible for handling application payloads. It is necessary to support various applications with different encoding methods such as Protocol Buffer serialization to improve network transmission efficiency. Application Server also functions as a bridge between the cloud platform owned by users and the X-LoRa system so that customers can control LoRa nodes and enjoy the applications through web browsers or APPs on smartphones. The IoT cloud can get the application payloads by subscribing the specific topic, and can also send downlink messages to the LoRa Server through the application server.
+Application Server is responsible for handling application payloads. It is necessary to support various applications with different encoding methods such as Protocol Buffer serialization to improve network transmission efficiency. Application Server also functions as a bridge between the cloud platform owned by users and the X-LoRa system so that customers can control LoRa™ devices and enjoy the applications through web browsers or APPs on smartphones. The IoT cloud can get the application payloads by subscribing the specific topic, and can also send downlink messages to the LoRa™ Server through the application server.
 
 #### Interaction with Server
 

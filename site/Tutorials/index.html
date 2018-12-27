@@ -50,7 +50,7 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../Overview/">Overview</a>
+    <a class="" href="..">Overview</a>
 	    </li>
           
             <li class="toctree-l1 current">
@@ -66,7 +66,7 @@
         
             <li><a class="toctree-l3" href="#configuration">Configuration</a></li>
         
-            <li><a class="toctree-l3" href="#installation-of-lora-web-server">Installation of LoRa Web Server</a></li>
+            <li><a class="toctree-l3" href="#installation-of-loratm-web-server">Installation of LoRa™ Web Server</a></li>
         
             <li><a class="toctree-l3" href="#usage">Usage</a></li>
         
@@ -80,7 +80,29 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../Implementations/">Implementations</a>
+    <span class="caption-text">Implementations</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Connector/">Connector</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Server/">Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Join/">Join Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Controller/">Controller</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Motes/">Motes Emulator</a>
+                </li>
+    </ul>
 	    </li>
           
             <li class="toctree-l1">
@@ -166,13 +188,13 @@
 <p>Modify the configurations of kafka, MySQL and other customized fields in <code>config.json</code>. The detailed configurations are described in Section 2.2.</p>
 </li>
 <li>
-<p>Use <code>start.sh</code> to start LoRa system:</p>
+<p>Use <code>start.sh</code> to start LoRa™ system:</p>
 </li>
 </ul>
 <pre><code class="sh">  ./start.sh
 </code></pre>
 
-<p>To test if the system has started properly, please refer to: Motes Emulator.</p>
+<p>To test if the system has started properly, please refer to: <a href="../Motes/">Motes Emulator</a>.</p>
 <h3 id="installation-with-docker">Installation with Docker</h3>
 <h4 id="system-requiremwnts">System Requiremwnts</h4>
 <p>It is necessary for users to make sure that all the prerequisites below have been installed before deploying X-LoRa from Docker.</p>
@@ -206,13 +228,13 @@
 
 <p>No more configurations need to be changed in this installation process.</p>
 <ul>
-<li>Use <code>start.sh</code> to start LoRa system:</li>
+<li>Use <code>start.sh</code> to start LoRa™ system:</li>
 </ul>
 <pre><code class="sh">  cd ../lora/lora-system
   ./start.sh
 </code></pre>
 
-<p>To test if the system has started properly, please refer to: Motes Emulator.</p>
+<p>To test if the system has started properly, please refer to: <a href="../Motes/">Motes Emulator</a>.</p>
 <hr />
 <h2 id="configuration">Configuration</h2>
 <p>The default configuration file is shown as follows.</p>
@@ -443,14 +465,14 @@
 <li>database.mysql.username: the username of MySQL</li>
 <li>database.mysql.password: the user's password of MySQL</li>
 <li>database.mysql.database: the database used for X-LoRa in MySQL</li>
-<li>udp.port: the port for receiving UDP packets from LoRa Gateways(default value is 1700)</li>
+<li>udp.port: the port for receiving UDP packets from LoRa™ Gateways(default value is 1700)</li>
 <li>http.port: the port of HTTP interfaces(default value is 3000)</li>
 </ul>
 <p>Other configurations are free to change to fit the environments.</p>
 <hr />
-<h2 id="installation-of-lora-web-server">Installation of LoRa Web Server</h2>
+<h2 id="installation-of-loratm-web-server">Installation of LoRa™ Web Server</h2>
 <h4 id="system-requiremwnts_1">System Requiremwnts</h4>
-<p>All the requirements below should be met before installing the LoRa web server.</p>
+<p>All the requirements below should be met before installing the LoRa™ web server.</p>
 <ul>
 <li>Apache (version: 2.4.* recommend: 2.4.7)</li>
 <li>PHP (version&gt;=7.0.0 recommend: 7.0.30)</li>
@@ -517,7 +539,7 @@
 </code></pre>
 
 <ul>
-<li>Run the artisan command to start the LoRa web server system directly :</li>
+<li>Run the artisan command to start the LoRa™ web server system directly :</li>
 </ul>
 <pre><code class="sh">  php artisan serve --host=0.0.0.0 --port=8000
 </code></pre>
@@ -563,7 +585,7 @@
      end script
 </code></pre>
 
-<p>Run the following command to start the LoRa web server system :</p>
+<p>Run the following command to start the LoRa™ web server system :</p>
 <pre><code class="sh">  service lora-web-server start
 </code></pre>
 
@@ -593,17 +615,17 @@
      WantedBy=multi-user.target
 </code></pre>
 
-<p>Run the following command to start the LoRa web server system :</p>
+<p>Run the following command to start the LoRa™ web server system :</p>
 <pre><code class="sh">  systemctl start lora-web-server.service
 </code></pre>
 
 <hr />
 <h2 id="usage">Usage</h2>
 <p>This section describes the detailed instructions of X-LoRa. It shows how to create applications, register gateways and activate devices.</p>
-<h4 id="registration-on-lora-web">Registration on LoRa Web</h4>
-<p>Users need to register their applications, gateways and devices on LoRa web before further operations.</p>
+<h4 id="registration-on-loratm-web">Registration on LoRa™ Web</h4>
+<p>Users need to register their applications, gateways and devices on the LoRa™ web before further operations.</p>
 <h5 id="user-management">User Management</h5>
-<p>Create an account for the LoRa web and start enjoying the service the LoRa server provided. With a LoRa web account, the following can be done:</p>
+<p>Create an account for the LoRa™ web and start enjoying the service the LoRa™ server provided. With a LoRa™ web account, the following can be done:</p>
 <ul>
 <li>Creating applications, gateways and devices</li>
 <li>Easy access to the transmission data and application data</li>
@@ -641,7 +663,7 @@
 </tbody>
 </table>
 <h5 id="gateway-management">Gateway Management</h5>
-<p>LoRa gateways directly connect to LoRa network connector and upload and download data for LoRa devices. However, registering gateway in the LoRa web is firstly needed. The verification of the existence of the gateways without registering in the LoRa web can’t success.</p>
+<p>LoRa™ gateways directly connect to LoRa™ network connector and upload and download data for LoRa™ devices. However, registering gateway in the LoRa™ web is firstly needed. The verification of the existence of the gateways without registering in the LoRa™ web can’t success.</p>
 <p>The fields in the following table need to be filled in during the registration of gateways. Note that the gatewayID field should be unique. If not, the registration can’t be successful.</p>
 <p>Once the registration is successful, the web will return a list of gateways that the user has registered.</p>
 <p><center>TABLE 2 Description of Gateway Registration Form</center></p>
@@ -711,13 +733,13 @@
 <tr>
 <td align="center">AppEUI</td>
 <td align="center">String</td>
-<td align="center">LoRa application unique identifier</td>
+<td align="center">LoRa™ application unique identifier</td>
 <td align="center">Unique</td>
 </tr>
 </tbody>
 </table>
 <h5 id="device-management">Device Management</h5>
-<p>Before LoRa devices are able to connect to the LoRa server, users should register them in the LoRa web. Without that, the verification of the existence of the devices will fail.</p>
+<p>Before LoRa™ devices are able to connect to the LoRa™ server, users should register them in the LoRa™ web. Without that, the verification of the existence of the devices will fail.</p>
 <p>Device registration must be performed after the application is registered, which has been explained in the previous section. Due to the fact that activation of an end-device can be achieved in two ways, device registration can be divided into two categories, i.e., Over-The-Air Activation (OTAA) and Activation by Personalization (ABP) modes. The attribute fields required for the registration of the two modes have different requirements, i.e.,</p>
 <ul>
 <li>OTAA Mode</li>
@@ -738,7 +760,7 @@
 <tr>
 <td align="center">DevEUI</td>
 <td align="center">String</td>
-<td align="center">LoRa device unique identifier</td>
+<td align="center">LoRa™ device unique identifier</td>
 <td align="center">Unique</td>
 </tr>
 <tr>
@@ -768,7 +790,7 @@
 <tr>
 <td align="center">DevEUI</td>
 <td align="center">String</td>
-<td align="center">LoRa device unique identifier</td>
+<td align="center">LoRa™ device unique identifier</td>
 <td align="center">Unique</td>
 </tr>
 <tr>
@@ -780,7 +802,7 @@
 <tr>
 <td align="center">DevAddr</td>
 <td align="center">String</td>
-<td align="center">LoRa device unique address</td>
+<td align="center">LoRa™ device unique address</td>
 <td align="center">Unique</td>
 </tr>
 <tr>
@@ -797,13 +819,13 @@
 </tr>
 </tbody>
 </table>
-<h4 id="interaction-with-lora-server">Interaction with LoRa Server</h4>
-<p>For over-the-air activation, LoRa devices must follow a join procedure prior to participating in data exchanges with the Network Server. An end-device has to go through a new join procedure every time when it has lost the session context information. After that, devices can send the uplink messages and receive the downlink messages from the LoRa server.</p>
-<p>Activating a LoRa devices by personalization means that all the necessary information is stored in devices in the very beginning. These devices can interact with LoRa server directly.</p>
+<h4 id="interaction-with-loratm-server">Interaction with LoRa™ Server</h4>
+<p>For over-the-air activation, LoRa™ devices must follow a join procedure prior to participating in data exchanges with the Network Server. An end-device has to go through a new join procedure every time when it has lost the session context information. After that, devices can send the uplink messages and receive the downlink messages from the LoRa™ server.</p>
+<p>Activating a LoRa™ devices by personalization means that all the necessary information is stored in devices in the very beginning. These devices can interact with LoRa™ server directly.</p>
 <h2 id="application-integration">Application Integration</h2>
 <h4 id="introduction">Introduction</h4>
 <p>This section describes how to integrate customized application servers into X-LoRa systems.<br>
-Application Server is responsible for handling application payloads. It is necessary to support various applications with different encoding methods such as Protocol Buffer serialization to improve network transmission efficiency. Application Server also functions as a bridge between the cloud platform owned by users and the X-LoRa system so that customers can control LoRa nodes and enjoy the applications through web browsers or APPs on smartphones. The IoT cloud can get the application payloads by subscribing the specific topic, and can also send downlink messages to the LoRa Server through the application server.</p>
+Application Server is responsible for handling application payloads. It is necessary to support various applications with different encoding methods such as Protocol Buffer serialization to improve network transmission efficiency. Application Server also functions as a bridge between the cloud platform owned by users and the X-LoRa system so that customers can control LoRa™ devices and enjoy the applications through web browsers or APPs on smartphones. The IoT cloud can get the application payloads by subscribing the specific topic, and can also send downlink messages to the LoRa™ Server through the application server.</p>
 <h4 id="interaction-with-server">Interaction with Server</h4>
 <p>The data exchange format from Server to Application Server is defined in this section.</p>
 <h5 id="server-to-application-server">Server to Application Server</h5>
@@ -819,10 +841,10 @@ Application Server is responsible for handling application payloads. It is neces
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Implementations/" class="btn btn-neutral float-right" title="Implementations">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../Connector/" class="btn btn-neutral float-right" title="Connector">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../Overview/" class="btn btn-neutral" title="Overview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href=".." class="btn btn-neutral" title="Overview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -848,10 +870,10 @@ Application Server is responsible for handling application payloads. It is neces
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../Overview/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../Implementations/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../Connector/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

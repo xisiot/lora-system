@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Server - Xis LoRa documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Server";
+    var mkdocs_page_input_path = "Server.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Xis LoRa documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Overview</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Tutorials/">Tutorials</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Implementations</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Connector/">Connector</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Server</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#server">Server</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#functions">Functions</a></li>
+        
+            <li><a class="toctree-l4" href="#http-apis">HTTP APIs</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Join/">Join Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Controller/">Controller</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Motes/">Motes Emulator</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Source&Contact/">Source&Contact</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Xis LoRa documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Implementations &raquo;</li>
+        
+      
+    
+    <li>Server</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="server">Server</h2>
+<p>The LoRa™ network server is the core of the whole X-LoRa system.</p>
+<h3 id="functions">Functions</h3>
+<ul>
+<li><strong>Data Managemrnt and Service Scheduling</strong></li>
+</ul>
+<p>Server is responsible for data management and service scheduling. It invokes different modules according to the requirements of data processing. Depending on the type of uplink packet, the information in the packet is separated into specific formats. </p>
+<p>The data about MAC layer control commands is sent to Controller, the original application data is fed into Application Server and the join packets are forwarded to the Join Server without any interpretation. </p>
+<p>Moreover, Server is required to schedule packet transmissions on the downlink. One of LoRa™ gateways is selected to send downlink packets through exploiting the uplink transmission parameters such as RSSI and SNR. </p>
+<p>In addition, Server identifies the contents of downlink packets from two queues, which are responsible for application data and MAC commands.</p>
+<ul>
+<li><strong>Deduplication</strong></li>
+</ul>
+<p>Sometimes, LoRa™ devices may connect with more than one LoRa™ gateway. Therefore, single packet from a LoRa™ device is likely to be received by multiple LoRa™ gateways simultaneously. To avoid the waste of radio resources due to redundancy, Server is essential for filtering duplicate packets. Only one of the duplicate packets is fed into the subsequent processing modules such as Application Server and Controller. However, the transmission information such as SNR attached in the duplicate packets is not discarded and can be used as reference parameters for downlink routing. Finally, historical data is collected and stored in Server. It can provide the possibility for managers to check up the uplink/downlink packets and monitor the running states of LoRa™ devices and gateways.</p>
+<h3 id="http-apis">HTTP APIs</h3>
+<p>The HTTP APIs are used to register and issue downlink MAC Commands. It is convenient for users to manage the system. Furthermore, users can integrate X-LoRa into their own platforms using these HTTP APIs. All HTTP API methods are listed below.</p>
+<h4 id="user-register">User Register</h4>
+<p>Only users who have been registered can use the X-LoRa System. This API is used for user register and returns the userID used for gateway, application and device register.</p>
+<pre><code class="javascript">POST /register
+</code></pre>
+
+<ul>
+<li>Request</li>
+</ul>
+<pre><code class="json">Headers:
+  Content-Type: application/x-www-form-urlencoded
+
+Body:
+  {
+    &quot;email&quot;: &quot;test@xisiot.com&quot;,
+    &quot;password&quot;: &quot;123456&quot;
+  }
+</code></pre>
+
+<ul>
+<li>Response</li>
+</ul>
+<pre><code class="json">Body:
+  {
+    &quot;userID&quot;: &quot;4c0c99ca5caef7c9f4707d641c726f55&quot;
+  }
+</code></pre>
+
+<h4 id="user-login">User Login</h4>
+<p>This API is used for user login and returns the userID.</p>
+<pre><code class="javascript">POST /login
+</code></pre>
+
+<ul>
+<li>Request</li>
+</ul>
+<pre><code class="json">Headers:
+  Content-Type: application/x-www-form-urlencoded
+
+Body:
+  {
+    &quot;email&quot;: &quot;test@xisiot.com&quot;,
+    &quot;password&quot;: &quot;123456&quot;
+  }
+</code></pre>
+
+<ul>
+<li>Response</li>
+</ul>
+<pre><code class="json">Body:
+  {
+    &quot;userID&quot;: &quot;4c0c99ca5caef7c9f4707d641c726f55&quot;
+  }
+</code></pre>
+
+<h4 id="application-register">Application Register</h4>
+<p>This API is used for application register.</p>
+<pre><code class="javascript">POST /application
+</code></pre>
+
+<ul>
+<li>Request</li>
+</ul>
+<pre><code class="json">Headers:
+  Content-Type: application/x-www-form-urlencoded
+
+Body:
+  {
+    &quot;userID&quot;: &quot;4c0c99ca5caef7c9f4707d641c726f55 &quot;,
+    &quot;AppEUI&quot;: &quot;9816be466f467a17&quot;,
+    &quot;name&quot;: &quot;test&quot;
+  }
+</code></pre>
+
+<ul>
+<li>Response</li>
+</ul>
+<pre><code class="json">Body:
+  {
+    &quot;code&quot;: &quot;200&quot;,
+    &quot;message&quot;: &quot;success&quot;
+  }
+</code></pre>
+
+<h4 id="device-register">Device Register</h4>
+<p>This API is used for device register.</p>
+<pre><code class="javascript">POST /device
+</code></pre>
+
+<ul>
+<li>Request</li>
+</ul>
+<pre><code class="json">Headers:
+  Content-Type: application/x-www-form-urlencoded
+
+Body:
+  {
+    &quot;AppEUI&quot;: &quot;9816be466f467a17&quot;,
+    &quot;DevEUI&quot;: &quot;AAAAAAAAAAAAAAAA&quot;,
+    &quot;AppKey&quot;: &quot;FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF&quot;
+  }
+</code></pre>
+
+<ul>
+<li>Response</li>
+</ul>
+<pre><code class="json">Body:
+  {
+    &quot;code&quot;: &quot;200&quot;,
+    &quot;message&quot;: &quot;success&quot;
+  }
+</code></pre>
+
+<h4 id="gateway-register">Gateway Register</h4>
+<p>This API is used for gateway register.</p>
+<pre><code class="javascript">POST /gateway
+</code></pre>
+
+<ul>
+<li>Request</li>
+</ul>
+<pre><code class="json">Headers:
+  Content-Type: application/x-www-form-urlencoded
+
+Body:
+  {
+    &quot;userID&quot;: &quot;4c0c99ca5caef7c9f4707d641c726f55 &quot;,
+    &quot;gatewayId&quot;: &quot;bbbbbbbbbbbbbbbb&quot;
+  }
+</code></pre>
+
+<ul>
+<li>Response</li>
+</ul>
+<pre><code class="json">Body:
+  {
+    &quot;code&quot;: &quot;200&quot;,
+    &quot;message&quot;: &quot;success&quot;
+  }
+</code></pre>
+
+<h4 id="issue-mac-commands">Issue MAC Commands</h4>
+<p>This API is used to send the downlink MACCommand.</p>
+<pre><code class="javascript">POST /maccommand
+</code></pre>
+
+<ul>
+<li>Request</li>
+</ul>
+<pre><code class="json">Headers:
+  Content-Type: application/x-www-form-urlencoded
+
+Body:
+  {
+    &quot;DevAddr&quot;: &quot;12345678 &quot;,
+    &quot;MACCommand&quot;: &quot;030200ff01&quot;
+  }
+</code></pre>
+
+<ul>
+<li>Response</li>
+</ul>
+<pre><code class="json">Body:
+  {
+    &quot;code&quot;: &quot;200&quot;,
+    &quot;message&quot;: &quot;success&quot;
+  }
+</code></pre>
+
+<ul>
+<li>MAC Commands</li>
+</ul>
+<p>All the MAC Commands defined in LoRaWAN™ 1.1 are listed below. Bold font means the downlink MAC Commands.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Cid</th>
+<th align="center">MAC Command</th>
+<th align="center">Payload</th>
+<th align="center">Length(byte)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">0x01</td>
+<td align="center">ResetInd</td>
+<td align="center">Version</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x01</td>
+<td align="center">ResetConf</td>
+<td align="center">Version</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x02</td>
+<td align="center">LinkCheckReq</td>
+<td align="center"></td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">0x02</td>
+<td align="center">LinkCheckAns</td>
+<td align="center">Margin<br> GwCnt</td>
+<td align="center">1<br>1</td>
+</tr>
+<tr>
+<td align="center">0x03</td>
+<td align="center">LinkADRReq</td>
+<td align="center">TXPower<br>ChMask<br>Redundancy</td>
+<td align="center">1<br>2<br>1</td>
+</tr>
+<tr>
+<td align="center">0x03</td>
+<td align="center">LinkADRAns</td>
+<td align="center">Status</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x04</td>
+<td align="center">DutyCycleReq</td>
+<td align="center">DutyCyclePL</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x04</td>
+<td align="center">DutyCycleAns</td>
+<td align="center"></td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">0x05</td>
+<td align="center">RXParamSetupReq</td>
+<td align="center">DLSettings<br>Frequency</td>
+<td align="center">1<br>3</td>
+</tr>
+<tr>
+<td align="center">0x05</td>
+<td align="center">RXParamSetupAns</td>
+<td align="center">Status</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x06</td>
+<td align="center">DevStatusReq</td>
+<td align="center"></td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">0x06</td>
+<td align="center">DevStatusAns</td>
+<td align="center">Battery<br>Margin</td>
+<td align="center">1<br>1</td>
+</tr>
+<tr>
+<td align="center">0x07</td>
+<td align="center">NewChannelReq</td>
+<td align="center">ChIndex<br>Freq<br>DrRange</td>
+<td align="center">1<br>3<br>1</td>
+</tr>
+<tr>
+<td align="center">0x07</td>
+<td align="center">NewChannelAns</td>
+<td align="center">Status</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x08</td>
+<td align="center">RXTimingSetupReq</td>
+<td align="center">Settings</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x08</td>
+<td align="center">RXTimingSetupAns</td>
+<td align="center"></td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">0x09</td>
+<td align="center">TxParamSetupReq</td>
+<td align="center">DwellTime</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x09</td>
+<td align="center">TxParamSetupAns</td>
+<td align="center"></td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">0x0A</td>
+<td align="center">DlChannelReq</td>
+<td align="center">ChIndex<br>Freq</td>
+<td align="center">1<br>3</td>
+</tr>
+<tr>
+<td align="center">0x0A</td>
+<td align="center">DlChannelAns</td>
+<td align="center">Status</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x0B</td>
+<td align="center">RekeyInd</td>
+<td align="center">Version</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x0B</td>
+<td align="center">RekeyConf</td>
+<td align="center">Version</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x0C</td>
+<td align="center">ADRParamSetupReq</td>
+<td align="center">ADRParam</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x0C</td>
+<td align="center">ADRParamSetupAns</td>
+<td align="center"></td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">0x0D</td>
+<td align="center">DeviceTimeReq</td>
+<td align="center"></td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">0x0D</td>
+<td align="center">DeviceTimeAns</td>
+<td align="center">Seconds<br>FractionalSec</td>
+<td align="center">4<br>1</td>
+</tr>
+<tr>
+<td align="center">0x0E</td>
+<td align="center">ForceRejoinReq</td>
+<td align="center">ForceRejoinReq</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td align="center">0x0F</td>
+<td align="center">RejoinParamSetupReq</td>
+<td align="center">RejoinParamSetupReq</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">0x0F</td>
+<td align="center">RejoinParamSetupAns</td>
+<td align="center">Status</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<h4 id="error-list">Error List</h4>
+<table>
+<thead>
+<tr>
+<th align="center">Code</th>
+<th align="center">Message</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">2101</td>
+<td align="center">invalid email</td>
+</tr>
+<tr>
+<td align="center">2102</td>
+<td align="center">invalid password</td>
+</tr>
+<tr>
+<td align="center">2103</td>
+<td align="center">invalid AppEUI</td>
+</tr>
+<tr>
+<td align="center">2104</td>
+<td align="center">invalid DevEUI</td>
+</tr>
+<tr>
+<td align="center">2105</td>
+<td align="center">invalid AppKey</td>
+</tr>
+<tr>
+<td align="center">2106</td>
+<td align="center">invalid gatewayId</td>
+</tr>
+<tr>
+<td align="center">2107</td>
+<td align="center">invalid DevAddr</td>
+</tr>
+<tr>
+<td align="center">2108</td>
+<td align="center">invalid MACCommand</td>
+</tr>
+<tr>
+<td align="center">3101</td>
+<td align="center">user already registered</td>
+</tr>
+<tr>
+<td align="center">3102</td>
+<td align="center">user not registered</td>
+</tr>
+<tr>
+<td align="center">3103</td>
+<td align="center">user password error</td>
+</tr>
+<tr>
+<td align="center">3201</td>
+<td align="center">application already created</td>
+</tr>
+<tr>
+<td align="center">3202</td>
+<td align="center">application not created</td>
+</tr>
+<tr>
+<td align="center">3301</td>
+<td align="center">device already created</td>
+</tr>
+<tr>
+<td align="center">3401</td>
+<td align="center">gateway already created</td>
+</tr>
+</tbody>
+</table>
+<hr />
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Join/" class="btn btn-neutral float-right" title="Join Server">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Connector/" class="btn btn-neutral" title="Connector"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../Connector/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Join/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

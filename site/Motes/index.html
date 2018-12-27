@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Source&Contact - Xis LoRa documentation</title>
+  <title>Motes Emulator - Xis LoRa documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,8 +17,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Source&Contact";
-    var mkdocs_page_input_path = "Source&Contact.md";
+    var mkdocs_page_name = "Motes Emulator";
+    var mkdocs_page_input_path = "Motes.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -78,30 +78,36 @@
                     
     <a class="" href="../Controller/">Controller</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../Motes/">Motes Emulator</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1 current">
-		
-    <a class="current" href="./">Source&Contact</a>
+    <a class="current" href="./">Motes Emulator</a>
     <ul class="subnav">
             
-    <li class="toctree-l2"><a href="#source-contact">Source &amp; Contact</a></li>
+    <li class="toctree-l3"><a href="#motes-emulator">Motes Emulator</a></li>
     
         <ul>
         
-            <li><a class="toctree-l3" href="#github">Github</a></li>
+            <li><a class="toctree-l4" href="#requirements">Requirements</a></li>
         
-            <li><a class="toctree-l3" href="#contact-us">Contact Us</a></li>
+            <li><a class="toctree-l4" href="#installation">Installation</a></li>
+        
+            <li><a class="toctree-l4" href="#see-the-helps">See the Helps</a></li>
+        
+            <li><a class="toctree-l4" href="#usage">Usage</a></li>
+        
+            <li><a class="toctree-l4" href="#contributions">Contributions</a></li>
         
         </ul>
     
 
     </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Source&Contact/">Source&Contact</a>
 	    </li>
           
         </ul>
@@ -125,8 +131,12 @@
     <li><a href="..">Docs</a> &raquo;</li>
     
       
+        
+          <li>Implementations &raquo;</li>
+        
+      
     
-    <li>Source&Contact</li>
+    <li>Motes Emulator</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -136,10 +146,71 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="source-contact">Source &amp; Contact</h1>
-<h2 id="github">Github</h2>
-<p>This repo is hosted on <a href="https://github.com/xisiot/lora-system">https://github.com/xisiot/lora-system</a> and under <a href="https://github.com/xisiot/lora-system/blob/master/LICENSE">GPL-3.0 License</a>, any contribution or suggestion is welcome. Just open an issue or send a pull request.</p>
-<h2 id="contact-us">Contact Us</h2>
+                <h2 id="motes-emulator">Motes Emulator</h2>
+<p>This is a useful tool to emulate end devices (a.k.a. Motes) and test LoRa™ server based on <em>LoRaWAN™</em> <em>1.0.2 protocol</em>. </p>
+<h3 id="requirements">Requirements</h3>
+<ul>
+<li>Python 3.6</li>
+<li>Linux</li>
+</ul>
+<h3 id="installation">Installation</h3>
+<ul>
+<li>Use pip to install pipenv:</li>
+</ul>
+<pre><code class="sh">  (sudo) pip3 install pipenv
+</code></pre>
+
+<ul>
+<li>Clone this repo into a directory:</li>
+</ul>
+<pre><code class="sh">  git clone https://github.com/houluy/lora-motes-emulator.git
+</code></pre>
+
+<ul>
+<li>Use pipenv to create a virtual Python enviroment and install all the dependencies:</li>
+</ul>
+<pre><code class="sh">  pipenv --python 3 install
+</code></pre>
+
+<h3 id="see-the-helps">See the Helps</h3>
+<pre><code class="sh">pipenv run python main.py -h
+</code></pre>
+
+<p>or by:</p>
+<pre><code class="sh">pipenv shell
+python main.py -h
+</code></pre>
+
+<h3 id="usage">Usage</h3>
+<p>This tool can be used step by step as follows,</p>
+<ol>
+<li>
+<p>Copy a local <em>config</em> file and <em>device info</em> file from the templates, then modify the <em>src</em> and <em>dest</em> address as the address of test server and LoRa server.</p>
+</li>
+<li>
+<p>Modify device information in <code>device.json</code> you just copied. The information fields include <em>AppEUI</em>, <em>DevEUI</em>, <em>AppKey</em> and <em>GatewayEUI</em> (a.k.a. <em>GatewayID</em>).</p>
+</li>
+<li>
+<p>Install the tool, and start the virtual shell by command <code>pipenv shell</code>.</p>
+</li>
+<li>Totally four kinds of LoRa™ messages are supported: <em>pull data</em>, <em>join confirmed data up</em> (with or without <em>FOpts</em>) and <em>MAC Commands</em> <em>in FRMPayload field</em>. The examples are shown below:</li>
+</ol>
+<pre><code>python main.py pull
+
+python main.py join
+
+python main.py app -m (your uplink message, will be encoded by UTF-8) -f (your MACCommand in FOpts field)
+
+python main.py mac -c (your MAC Command in FRMPayload field)
+</code></pre>
+
+<p>If this is your first-time running, run <em>pull</em> and <em>join</em> commands in the very beginning to register the port of gateway and the LoRa™ device. The device info will be saved automatically in <em>models/device.pkl</em> using <em>pickle</em>, and loaded next time. Then, you can use <em>app</em> or <em>mac</em> to test your server. Here are the examples.</p>
+<pre><code>python main.py app -m helloworld -f 0302
+python main.py mac -c 0302
+</code></pre>
+
+<h3 id="contributions">Contributions</h3>
+<p>This repo is hosted on <a href="https://github.com/houluy/lora-motes-emulator">https://github.com/houluy/lora-motes-emulator</a> and under <em>MIT license</em>, any contribution or suggestion is welcome. Just open an issue or send a pull request.</p>
               
             </div>
           </div>
@@ -147,8 +218,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../Source&Contact/" class="btn btn-neutral float-right" title="Source&Contact">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-        <a href="../Motes/" class="btn btn-neutral" title="Motes Emulator"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+        <a href="../Controller/" class="btn btn-neutral" title="Controller"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -174,8 +247,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../Motes/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../Controller/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../Source&Contact/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

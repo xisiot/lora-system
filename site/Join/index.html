@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Join Server - Xis LoRa documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Join Server";
+    var mkdocs_page_input_path = "Join.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Xis LoRa documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Overview</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Tutorials/">Tutorials</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Implementations</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Connector/">Connector</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Server/">Server</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Join Server</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#join-server">Join Server</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#otaa-vs-abp">OTAA vs ABP</a></li>
+        
+            <li><a class="toctree-l4" href="#functions">Functions</a></li>
+        
+            <li><a class="toctree-l4" href="#interaction-with-loratm-network-server">Interaction with LoRa™ Network Server</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Controller/">Controller</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Motes/">Motes Emulator</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Source&Contact/">Source&Contact</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Xis LoRa documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Implementations &raquo;</li>
+        
+      
+    
+    <li>Join Server</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="join-server">Join Server</h2>
+<p>The LoRa™ join server handles the registrations of LoRa™ devices according to LoRaWAN™ standard.</p>
+<h3 id="otaa-vs-abp">OTAA vs ABP</h3>
+<p>LoRaWAN™ standard defines two ways of activation for LoRa™ devices, i.e., Over-The-Air Activation (OTAA) and Activation by Personalization (ABP). All LoRa™ devices must be activated in either way before access the network. </p>
+<p>In OTAA mode, LoRa™ devices only need to store AppEUI, DevEUI (or JoinEUI in LoRaWAN™ standard 1.1) and AppKey in their hardware. Then, these devices can issue activations by sending join request messages to servers. Some necessary parameters will be generated by server and respond via join accept messages. Some other data (e.g. session keys) are generated by both devices and server. These data are coincident since they use the same arguments and algorithms.</p>
+<p>In ABP mode, all the necessary information is loaded in devices in the very beginning. These devices can interact with connector directly. Some previous operations need to be taken before enabling OTAA or adopting ABP to devices, please refer to Section 3.3.2 for more information.</p>
+<h3 id="functions">Functions</h3>
+<ul>
+<li><strong>Activation</strong></li>
+</ul>
+<p>LoRa™ join server is only responsible for handling devices with OTAA mode. The ABP based devices can access the network directly. The join requests are parsed by connector first. Then, network server will forward the requests to join server via message queue under topic Join-sub. After receiving the requests, join server will generate some necessary data such as the unique identifier DevAddr for devices. The DevAddr contains the NetID for purpose of roaming. Two session keys, i.e., NwkSKey and AppSKey, are also calculated according to the protocol. Another part of the join procedure is to initialize some physical parameters of devices. The RX1DRoffset defines the offset between uplink data rate and downlink data rate at first reception slot. The Rx2 Data rate sets the data rate for second reception slot. Furthermore, the RxDelay configures the delay between TX and first reception slot. The scope of RxDelay varies from 0s to 15s. The details can be found in RXTimingSetupReq command. All these values are region specific and set to their default values during activation.</p>
+<p>Join server also needs to generate join accept messages for responses. These messages are published on topic <em>Join-pub</em> and network server needs to get them generally.</p>
+<ul>
+<li><strong>Rejoin</strong></li>
+</ul>
+<p><strong>UNIMPLEMENTED</strong></p>
+<h3 id="interaction-with-loratm-network-server">Interaction with LoRa™ Network Server</h3>
+<p>The LoRa™ join server subscribes the topic Join-sub to receive join requests from LoRa™ network server, and publishes join accept on topic Join-pub to LoRa™ network server. </p>
+<ul>
+<li><strong>Network Server to Join Server</strong></li>
+</ul>
+<pre><code class="json">   { MHDR: { MType: 0, Major: 0 },
+     MACPayload: {
+       AppEUI: &lt;Buffer 7b 80 60 6c af eb 0f 26&gt;,
+       DevEUI: &lt;Buffer 37 b8 90 3b 37 b8 90 3b&gt;,
+       DevNonce: &lt;Buffer 81 bf&gt;,
+     },
+   },
+</code></pre>
+
+<ul>
+<li><strong>Join Server to Network Server</strong></li>
+</ul>
+<pre><code class="json">   { MHDR: { MType: 1, Major: 0 },
+     MACPayload:
+     { AppNonce: &lt;Buffer 32 dc 97&gt;,
+       NetID: &lt;Buffer 00 00 00&gt;,
+       DevAddr: &lt;Buffer 00 92 e1 96&gt;,
+       DLSettings: &lt;Buffer c0&gt;,
+       RxDelay: &lt;Buffer 01&gt; },
+   },
+</code></pre>
+
+<hr />
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Controller/" class="btn btn-neutral float-right" title="Controller">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Server/" class="btn btn-neutral" title="Server"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../Server/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Controller/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
