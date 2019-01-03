@@ -536,6 +536,34 @@ Body:
 </tr>
 </tbody>
 </table>
+<h4 id="issue-downlink-application-data">Issue Downlink Application Data</h4>
+<p>This API is used to send the downlink application data.</p>
+<pre><code class="javascript">POST /downlink
+</code></pre>
+
+<ul>
+<li>Request</li>
+</ul>
+<pre><code class="json">Headers:
+  Content-Type: application/x-www-form-urlencoded
+
+Body:
+  {
+    &quot;DevAddr&quot;: &quot;12345678 &quot;,
+    &quot;Downlink&quot;: &quot;ff01ff&quot;
+  }
+</code></pre>
+
+<ul>
+<li>Response</li>
+</ul>
+<pre><code class="json">Body:
+  {
+    &quot;code&quot;: &quot;200&quot;,
+    &quot;message&quot;: &quot;success&quot;
+  }
+</code></pre>
+
 <h4 id="error-list">Error List</h4>
 <table>
 <thead>
@@ -576,6 +604,10 @@ Body:
 <tr>
 <td align="center">2108</td>
 <td align="center">invalid MACCommand</td>
+</tr>
+<tr>
+<td align="center">2109</td>
+<td align="center">invalid Downlink</td>
 </tr>
 <tr>
 <td align="center">3101</td>

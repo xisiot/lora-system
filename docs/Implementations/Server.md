@@ -226,6 +226,34 @@ Body:
   | 0x0F | RejoinParamSetupReq |       RejoinParamSetupReq       |      1       |
   | 0x0F | RejoinParamSetupAns |             Status              |      1       |
 
+#### Issue Downlink Application Data
+This API is used to send the downlink application data.
+
+``` javascript
+POST /downlink
+```
+
+* Request
+```json
+Headers:
+  Content-Type: application/x-www-form-urlencoded
+
+Body:
+  {
+    "DevAddr": "12345678 ",
+    "Downlink": "ff01ff"
+  }
+```
+
+* Response
+```json
+Body:
+  {
+    "code": "200",
+    "message": "success"
+  }
+```
+
 #### Error List
 
 | Code |           Message           |
@@ -238,6 +266,7 @@ Body:
 | 2106 |      invalid gatewayId      |
 | 2107 |       invalid DevAddr       |
 | 2108 |     invalid MACCommand      |
+| 2109 |     invalid Downlink        |
 | 3101 |   user already registered   |
 | 3102 |     user not registered     |
 | 3103 |     user password error     |
