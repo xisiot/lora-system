@@ -91,7 +91,7 @@ Headers:
 
 Body:
   {
-    "userID": "4c0c99ca5caef7c9f4707d641c726f55 ",
+    "userID": "4c0c99ca5caef7c9f4707d641c726f55",
     "AppEUI": "9816be466f467a17",
     "name": "test"
   }
@@ -149,7 +149,7 @@ Headers:
 
 Body:
   {
-    "userID": "4c0c99ca5caef7c9f4707d641c726f55 ",
+    "userID": "4c0c99ca5caef7c9f4707d641c726f55",
     "gatewayId": "bbbbbbbbbbbbbbbb"
   }
 ```
@@ -177,7 +177,7 @@ Headers:
 
 Body:
   {
-    "DevAddr": "12345678 ",
+    "DevAddr": "12345678",
     "MACCommand": "030200ff01"
   }
 ```
@@ -240,7 +240,7 @@ Headers:
 
 Body:
   {
-    "DevAddr": "12345678 ",
+    "DevAddr": "12345678",
     "Downlink": "ff01ff"
   }
 ```
