@@ -270,6 +270,17 @@ Body:
 | 3101 |   user already registered   |
 | 3102 |     user not registered     |
 | 3103 |     user password error     |
+| 3104 |       userID required       |
+| 3105 |        email required       |
+| 3106 |      password required      |
+| 3107 |        AppEUI required      |
+| 3108 |         name required       |
+| 3109 |        DevEUI required      |
+| 3110 |       AppKey required       |
+| 3111 |      gatewayId required     |
+| 3112 |       DevAddr required      |
+| 3113 |     MACCommand required     |
+| 3114 |       Downlink required     |
 | 3201 | application already created |
 | 3202 |   application not created   |
 | 3301 |   device already created    |
