@@ -194,37 +194,37 @@ Body:
 
   All the MAC Commands defined in LoRaWAN™ 1.1 are listed below. Bold font means the downlink MAC Commands.
 
-  | Cid  |     MAC Command     |             Payload             | Length(byte) |
-  | :--: | :-----------------: | :-----------------------------: | :----------: |
-  | 0x01 |      ResetInd       |             Version             |      1       |
-  | 0x01 |      ResetConf      |             Version             |      1       |
-  | 0x02 |    LinkCheckReq     |                                 |      0       |
-  | 0x02 |    LinkCheckAns     |        Margin<br> GwCnt         |    1<br>1    |
-  | 0x03 |     LinkADRReq      | TXPower<br>ChMask<br>Redundancy | 1<br>2<br>1  |
-  | 0x03 |     LinkADRAns      |             Status              |      1       |
-  | 0x04 |    DutyCycleReq     |           DutyCyclePL           |      1       |
-  | 0x04 |    DutyCycleAns     |                                 |      0       |
-  | 0x05 |   RXParamSetupReq   |     DLSettings<br>Frequency     |    1<br>3    |
-  | 0x05 |   RXParamSetupAns   |             Status              |      1       |
-  | 0x06 |    DevStatusReq     |                                 |      0       |
-  | 0x06 |    DevStatusAns     |        Battery<br>Margin        |    1<br>1    |
-  | 0x07 |    NewChannelReq    |   ChIndex<br>Freq<br>DrRange    | 1<br>3<br>1  |
-  | 0x07 |    NewChannelAns    |             Status              |      1       |
-  | 0x08 |  RXTimingSetupReq   |            Settings             |      1       |
-  | 0x08 |  RXTimingSetupAns   |                                 |      0       |
-  | 0x09 |   TxParamSetupReq   |            DwellTime            |      1       |
-  | 0x09 |   TxParamSetupAns   |                                 |      0       |
-  | 0x0A |    DlChannelReq     |         ChIndex<br>Freq         |    1<br>3    |
-  | 0x0A |    DlChannelAns     |             Status              |      1       |
-  | 0x0B |      RekeyInd       |             Version             |      1       |
-  | 0x0B |      RekeyConf      |             Version             |      1       |
-  | 0x0C |  ADRParamSetupReq   |            ADRParam             |      1       |
-  | 0x0C |  ADRParamSetupAns   |                                 |      0       |
-  | 0x0D |    DeviceTimeReq    |                                 |      0       |
-  | 0x0D |    DeviceTimeAns    |    Seconds<br>FractionalSec     |    4<br>1    |
-  | 0x0E |   ForceRejoinReq    |         ForceRejoinReq          |      2       |
-  | 0x0F | RejoinParamSetupReq |       RejoinParamSetupReq       |      1       |
-  | 0x0F | RejoinParamSetupAns |             Status              |      1       |
+  | Cid  |       MAC Command       |                   Payload                   |      Length(byte)       |
+  | :--: | :---------------------: | :-----------------------------------------: | :---------------------: |
+  | 0x01 |        ResetInd         |                   Version                   |            1            |
+  | 0x01 |      **ResetConf**      |                 **Version**                 |          **1**          |
+  | 0x02 |      LinkCheckReq       |                                             |            0            |
+  | 0x02 |    **LinkCheckAns**     |          **Margin**<br> **GwCnt**           |     **1**<br>**1**      |
+  | 0x03 |     **LinkADRReq**      | **TXPower**<br>**ChMask**<br>**Redundancy** | **1**<br>**2**<br>**1** |
+  | 0x03 |       LinkADRAns        |                   Status                    |            1            |
+  | 0x04 |    **DutyCycleReq**     |               **DutyCyclePL**               |          **1**          |
+  | 0x04 |      DutyCycleAns       |                                             |            0            |
+  | 0x05 |   **RXParamSetupReq**   |       **DLSettings**<br>**Frequency**       |     **1**<br>**3**      |
+  | 0x05 |     RXParamSetupAns     |                   Status                    |            1            |
+  | 0x06 |    **DevStatusReq**     |                                             |          **0**          |
+  | 0x06 |      DevStatusAns       |              Battery<br>Margin              |         1<br>1          |
+  | 0x07 |    **NewChannelReq**    |   **ChIndex**<br>**Freq**<br>**DrRange**    | **1**<br>**3**<br>**1** |
+  | 0x07 |      NewChannelAns      |                   Status                    |            1            |
+  | 0x08 |  **RXTimingSetupReq**   |                **Settings**                 |          **1**          |
+  | 0x08 |    RXTimingSetupAns     |                                             |            0            |
+  | 0x09 |   **TxParamSetupReq**   |                **DwellTime**                |          **1**          |
+  | 0x09 |     TxParamSetupAns     |                                             |            0            |
+  | 0x0A |    **DlChannelReq**     |           **ChIndex**<br>**Freq**           |     **1**<br>**3**      |
+  | 0x0A |      DlChannelAns       |                   Status                    |            1            |
+  | 0x0B |        RekeyInd         |                   Version                   |            1            |
+  | 0x0B |      **RekeyConf**      |                 **Version**                 |          **1**          |
+  | 0x0C |  **ADRParamSetupReq**   |                **ADRParam**                 |          **1**          |
+  | 0x0C |    ADRParamSetupAns     |                                             |            0            |
+  | 0x0D |      DeviceTimeReq      |                                             |            0            |
+  | 0x0D |    **DeviceTimeAns**    |      **Seconds**<br>**FractionalSec**       |     **4**<br>**1**      |
+  | 0x0E |   **ForceRejoinReq**    |             **ForceRejoinReq**              |          **2**          |
+  | 0x0F | **RejoinParamSetupReq** |           **RejoinParamSetupReq**           |          **1**          |
+  | 0x0F |   RejoinParamSetupAns   |                   Status                    |            1            |
 
 #### Issue Downlink Application Data
 This API is used to send the downlink application data.
