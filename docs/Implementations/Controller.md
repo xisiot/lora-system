@@ -53,7 +53,7 @@ The LoRa join server subscribes the topic CS-sub to receive join requests from L
        {
         	0x01: { Version: <Buffer 02>, },
        },
-   	{
+   	  {
        	0x02: null,
        },
        {

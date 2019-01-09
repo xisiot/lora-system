@@ -18,4 +18,12 @@ The data exchange format from Server to Application Server is defined in this se
 }
 ```
 
+##### Application Server to Server
+
+```json
+{
+    DevAddr: <Buffer 00 08 fb 31>,
+    FRMPayload: <Buffer ff 01 ff>,
+}
+```
 ---
